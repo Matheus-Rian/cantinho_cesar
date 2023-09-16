@@ -15,3 +15,14 @@ Nossa empolgante proposta envolve a criação de uma aplicação web altamente f
 **Projeto no Jira:**
 
 https://funddesoftware.atlassian.net/jira/software/projects/KAN/boards/1
+
+**Quadro no Jira:**
+
+![image](https://github.com/Matheus-Rian/cantinho_cesar/assets/98843736/2e06cb52-8667-4e29-bd94-d17596dad130)
+
+**Backlog no Jira:**
+
+![image](https://github.com/Matheus-Rian/cantinho_cesar/assets/98843736/ebb1a3da-7161-4f51-ab49-0d38aab61287)
+
+
+
