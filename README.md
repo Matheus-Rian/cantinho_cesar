@@ -12,6 +12,14 @@ Nossa empolgante proposta envolve a criação de uma aplicação web altamente f
 - Victor Guilherme Alves Costa
 - Vitória Régia da Silva
 
+**Protótipo de Lo-Fi:**
+
+https://www.figma.com/file/cZh0hUIUmtqFVyaUKbsbk9/CANTINHO-CESAR?type=design&node-id=0%3A1&mode=design&t=qvJK2zPKtZFOLIEY-1
+
+**Screen Cast:**
+
+https://drive.google.com/file/d/1rJyL1dB7V3c8LagASpUvyNqs-WlZa4uV/view?usp=sharing
+
 **Projeto no Jira:**
 
 https://funddesoftware.atlassian.net/jira/software/projects/KAN/boards/1
