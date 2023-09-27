@@ -1,5 +1,5 @@
 """
-ASGI config for cantinho_cesar project.
+ASGI config for project_cantinho project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cantinho_cesar.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project_cantinho.settings')
 
 application = get_asgi_application()
