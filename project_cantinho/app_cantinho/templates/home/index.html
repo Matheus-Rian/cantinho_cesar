@@ -6,19 +6,11 @@
 	<title>Home</title>
 </head>
 <body>
+
 	<main class="container">
-	{% if data %}
+	{% if products %}
 		<div class="row">
-		{% for d in data %}
-			<div class="card me-4 ms-4 mb-4" style="width: 18rem;">
-				<img src="{{ d.link }}" class="card-img" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">{{ d.name }}</h5>
-					<h5 class="card-title">R${{ d.value }}</h5>
-					<a href="#" class="btn btn-primary">Adicionar ao carrinho</a>
-				</div>
-			</div>
-		{% endfor %}
+			{% include "products/index.html" with data="products" %}
 		</div>
   {% else %}
     <p>No Products are available.</p>
