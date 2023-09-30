@@ -1,11 +1,21 @@
-<h1>Home is works!</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sua Página</title>
+</head>
+<body>
+    <h1>Home is works!</h1>
 
-{% if data %}
-	<ul>
-		{% for d in data %}
-			<li>{{ d.name }}</li>
-		{% endfor %}
-	</ul>
-{% else %}
-    <p>No Products are available.</p>
-{% endif %}
+    {% if data %}
+        <div class="card-container">
+            {% for d in data %}
+                <div class="card">
+                    <h2>{{ d.name}}</h2>
+                    <p>Preço: R$ {{ d.value }}</p>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No Products are available.</p>
+    {% endif %}
+</body>
+</html>
