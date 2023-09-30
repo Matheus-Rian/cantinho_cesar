@@ -1,10 +1,14 @@
 from django.shortcuts import render
 from .models import VendinhaController
 
-def index(request):
-  vendinha = VendinhaController.get_vendinha_by_name(name="Apollo")
-  output = [v for v in vendinha.products.all()]
+def get_products_by_vendinha(name):
+  vendinha = VendinhaController.get_vendinha_by_name(name=name)
+  products = [v for v in vendinha.products.all()]
   context = {
-      "data": output,
+    "products": products,
   }
-  return render(request, "home/index.html", context)
+  return context
+
+def index(request):
+  return render(request, "home/index.html", get_products_by_vendinha(name="Apollo"))
+
