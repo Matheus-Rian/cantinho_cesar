@@ -1,0 +1,10 @@
+{% for product in products %}
+	<div class="card me-4 ms-4 mb-4" style="width: 18rem;">
+		<img src="{{ product.link }}" class="card-img" alt="Imagem ilustrativa do Produto">
+		<div class="card-body">
+			<h5 class="card-title">{{ product.name }}</h5>
+			<h5 class="card-title">R${{ product.value }}</h5>
+			<a href="#" class="btn btn-primary">Adicionar ao carrinho</a>
+		</div>
+	</div>
+{% endfor %}
