@@ -1,7 +1,10 @@
 from django.shortcuts import render
-
-# Create your views here.
-from django.http import HttpResponse
+from .models import VendinhaController
 
 def index(request):
-  return HttpResponse("Hello, world. You're at the polls index.")
+  vendinha = VendinhaController.get_vendinha_by_name(name="Apollo")
+  output = [v for v in vendinha.products.all()]
+  context = {
+      "data": output,
+  }
+  return render(request, "home/index.html", context)
