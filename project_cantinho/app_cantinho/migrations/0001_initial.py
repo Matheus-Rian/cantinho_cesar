@@ -18,6 +18,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=200)),
                 ('value', models.DecimalField(decimal_places=2, max_digits=10)),
+                ('link', models.URLField()),
             ],
         ),
         migrations.CreateModel(
@@ -26,6 +27,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=200)),
                 ('products', models.ManyToManyField(to='app_cantinho.product')),
+                
             ],
         ),
         migrations.CreateModel(

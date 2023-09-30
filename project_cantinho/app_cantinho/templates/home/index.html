@@ -10,8 +10,8 @@
 	{% if data %}
 		<div class="row">
 		{% for d in data %}
-			<div class="card me-2 ms-2 mb-2" style="width: 18rem;">
-				<img src="https://img-global.cpcdn.com/recipes/f517fae910f1313e/680x482cq70/foto-principal-da-receita-empada-de-frango-com-massa-facil-e-deliciosa-q-derrete-na-boca.jpg" class="card-img-top" alt="...">
+			<div class="card me-4 ms-4 mb-4" style="width: 18rem;">
+				<img src="{{ d.link }}" class="card-img" alt="...">
 				<div class="card-body">
 					<h5 class="card-title">{{ d.name }}</h5>
 					<h5 class="card-title">R${{ d.value }}</h5>

@@ -1,8 +1,10 @@
 from django.db import models
 
 class Product(models.Model):
-  name = models.CharField(max_length=200)
-  value = models.DecimalField(max_digits=10, decimal_places=2)
+    name = models.CharField(max_length=200)
+    value = models.DecimalField(max_digits=10, decimal_places=2)
+    link = models.URLField()  
+ 
 
 class Vendinha(models.Model):
   name = models.CharField(max_length=200)
