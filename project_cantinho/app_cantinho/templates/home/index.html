@@ -1,0 +1,11 @@
+<h1>Home is works!</h1>
+
+{% if data %}
+	<ul>
+		{% for d in data %}
+			<li>{{ d.name }}</li>
+		{% endfor %}
+	</ul>
+{% else %}
+    <p>No Products are available.</p>
+{% endif %}
