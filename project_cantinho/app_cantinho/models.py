@@ -16,3 +16,7 @@ class Cart(models.Model):
   user = models.ForeignKey(User, on_delete=models.CASCADE)
   products = models.ManyToManyField(Product)
   total = models.DecimalField(max_digits=10, decimal_places=2)
+
+class VendinhaController():
+  def get_vendinha_by_name(name):
+    return Vendinha.objects.get(name=name)
