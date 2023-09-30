@@ -7,6 +7,12 @@
 </head>
 <body>
 
+	<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+	</form>
+
 	<main class="container">
 	{% if products %}
 		<div class="row">
