@@ -8,23 +8,31 @@ def get_products_by_vendinha(name):
   products = [product for product in vendinha.products.all()]
   return products
 
-def index(request):
+def get_result_by_form(request):
 	if request.method == 'POST':
 		form = OptionsVendinha(request.POST)
 		if form.is_valid():
-			opcao = form.cleaned_data['choices']
-		if opcao == 'BRUM':
-				resultado = 'Brum'
-		elif opcao == 'TIRADENTES':
-				resultado = 'Tiradentes'
-		elif opcao == 'APOLLO':
-				resultado = 'Apollo'
+			option = form.cleaned_data['choices']
+		if option == 'BRUM':
+			result = 'Brum'
+		elif option == 'TIRADENTES':
+			result = 'Tiradentes'
+		elif option == 'APOLLO':
+			result = 'Apollo'
 	else:
 		form = OptionsVendinha()
-		resultado = 'Apollo'
+		result = 'Apollo'
 
-	return render(request, "home/index.html", {'form': form, 'products': get_products_by_vendinha(name=resultado)})
+	return { 'form': form, 'result': result }
 
 class Cart(View):
 	def get(self, request,product_id, *args, **kwargs):
 		return HttpResponse("Método executado com sucesso!" + str(product_id))
+
+
+def index(request):
+	form = get_result_by_form(request=request)
+	return render(request, "home/index.html", {
+		'form': form['form'],
+		'products': get_products_by_vendinha(name=form['result'])
+	})
