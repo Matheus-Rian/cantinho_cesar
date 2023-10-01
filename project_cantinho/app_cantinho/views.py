@@ -1,6 +1,6 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, get_object_or_404
 from .forms import OptionsVendinha
-from .models import VendinhaController
+from .models import VendinhaController, CartController, CartItem, Cart, Product
 from django.views import View
 from .models import Product  
 from django.shortcuts import render, HttpResponse, get_object_or_404
