@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from .forms import OptionsVendinha
 from .models import VendinhaController
+from django.views import View
 
 def get_products_by_vendinha(name):
   vendinha = VendinhaController.get_vendinha_by_name(name=name)
@@ -23,3 +24,7 @@ def index(request):
 		resultado = 'Apollo'
 
 	return render(request, "home/index.html", {'form': form, 'products': get_products_by_vendinha(name=resultado)})
+
+class Cart(View):
+	def get(self, request,product_id, *args, **kwargs):
+		return HttpResponse("Método executado com sucesso!" + str(product_id))

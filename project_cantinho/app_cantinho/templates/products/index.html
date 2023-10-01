@@ -4,7 +4,7 @@
 		<div class="card-body">
 			<h5 class="card-title">{{ product.name }}</h5>
 			<h5 class="card-title">R${{ product.value }}</h5>
-			<a href="#" class="btn btn-primary">Adicionar ao carrinho</a>
+			<a href="{% url 'add_to_cart' product_id=product.id %}" class="btn btn-primary">Adicionar ao carrinho</a>
 		</div>
 	</div>
 {% endfor %}
