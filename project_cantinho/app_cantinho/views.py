@@ -2,6 +2,10 @@ from django.shortcuts import render, HttpResponse
 from .forms import OptionsVendinha
 from .models import VendinhaController
 from django.views import View
+from .models import Product  
+from django.shortcuts import render, HttpResponse, get_object_or_404
+
+
 
 def get_products_by_vendinha(name):
   vendinha = VendinhaController.get_vendinha_by_name(name=name)
@@ -26,8 +30,11 @@ def get_result_by_form(request):
 	return { 'form': form, 'result': result }
 
 class Cart(View):
-	def get(self, request,product_id, *args, **kwargs):
-		return HttpResponse("Método executado com sucesso!" + str(product_id))
+    def get(self, request, product_id, *args, **kwargs):
+        product_id = int(product_id)
+        product = get_object_or_404(Product, pk=product_id) 
+        response_message = f"Produto: {product.name}, Valor: {product.value}"
+        return HttpResponse(response_message)
 
 
 def index(request):
