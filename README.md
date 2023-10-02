@@ -24,7 +24,7 @@ https://drive.google.com/file/d/1rJyL1dB7V3c8LagASpUvyNqs-WlZa4uV/view?usp=shari
 
 https://funddesoftware.atlassian.net/jira/software/projects/KAN/boards/1
 
-** Relato de experiência **
+**Relato de experiência:**
 
 https://docs.google.com/document/d/1Iy46XEt1GkSDpi4vgnVepXKb0E6H7CNj_UAbXbauQMM/edit?usp=sharing
 
