@@ -24,6 +24,10 @@ https://drive.google.com/file/d/1rJyL1dB7V3c8LagASpUvyNqs-WlZa4uV/view?usp=shari
 
 https://funddesoftware.atlassian.net/jira/software/projects/KAN/boards/1
 
+** Relato de experiência **
+
+https://docs.google.com/document/d/1Iy46XEt1GkSDpi4vgnVepXKb0E6H7CNj_UAbXbauQMM/edit?usp=sharing
+
 **Quadro no Jira:**
 
 ![image](https://github.com/Matheus-Rian/cantinho_cesar/assets/98843736/2e06cb52-8667-4e29-bd94-d17596dad130)
