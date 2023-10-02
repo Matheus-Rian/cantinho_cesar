@@ -46,7 +46,8 @@ https://drive.google.com/file/d/1kv7ufCpiukALKSsN7M_fp-0Bw7Bmr2dZ/view?usp=shari
 
 **Quadro no Jira:**
 
-![image](https://github.com/Matheus-Rian/cantinho_cesar/assets/98843736/0d4127df-d7d1-4331-99e5-2af0a83274d5)
+![image](https://github.com/Matheus-Rian/cantinho_cesar/assets/101649965/9378e2c7-e3df-4c4f-a452-9cbe8b566efb)
+
 
 **Backlog no Jira:**
 
