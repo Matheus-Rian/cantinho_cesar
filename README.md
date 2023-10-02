@@ -44,6 +44,10 @@ https://docs.google.com/document/d/1Iy46XEt1GkSDpi4vgnVepXKb0E6H7CNj_UAbXbauQMM/
 
 https://drive.google.com/file/d/1kv7ufCpiukALKSsN7M_fp-0Bw7Bmr2dZ/view?usp=sharing
 
+**Screen Cast:**
+
+https://drive.google.com/file/d/1l-PggL4lX97P0CENTFJMVdzc-QCnXRch/view?usp=sharing 
+
 **Quadro no Jira:**
 
 ![image](https://github.com/Matheus-Rian/cantinho_cesar/assets/101649965/9378e2c7-e3df-4c4f-a452-9cbe8b566efb)
