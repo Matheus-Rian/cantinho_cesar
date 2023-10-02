@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404
 from .forms import OptionsVendinha
-from .models import VendinhaController, CartController, CartItem, Cart, Product
+from .models import VendinhaController, Product, CartController
 from django.views import View
 
 def get_products_by_vendinha(name):
@@ -26,12 +26,11 @@ def get_result_by_form(request):
 	return { 'form': form, 'result': result }
 
 class Cart(View):
-    def get(self, request, product_id, *args, **kwargs):
-        product_id = int(product_id)
-        product = get_object_or_404(Product, pk=product_id) 
-        response_message = f"Produto: {product.name}, Valor: {product.value}"
-        return HttpResponse(response_message)
-
+	def get(self, request, product_id, *args, **kwargs):
+		product_id = int(product_id)
+		product = get_object_or_404(Product, pk=product_id)
+		CartController.add_to_cart(product=product)
+		return HttpResponse(f"{product.name} adicionado ao carrinho!")
 
 def index(request):
 	form = get_result_by_form(request=request)
