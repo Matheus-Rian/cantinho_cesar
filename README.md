@@ -36,6 +36,10 @@ https://funddesoftware.atlassian.net/jira/software/projects/KAN/boards/1
 
 ## Entrega 02
 
+**Link do Web App no Azure**:
+
+https://cantinho-cesar.azurewebsites.net/
+
 **Relato de experiência Pair programming:**
 
 https://docs.google.com/document/d/1Iy46XEt1GkSDpi4vgnVepXKb0E6H7CNj_UAbXbauQMM/edit?usp=sharing
@@ -52,7 +56,6 @@ https://drive.google.com/file/d/1l-PggL4lX97P0CENTFJMVdzc-QCnXRch/view?usp=shari
 
 ![image](https://github.com/Matheus-Rian/cantinho_cesar/assets/101649965/9378e2c7-e3df-4c4f-a452-9cbe8b566efb)
 
-
 **Backlog no Jira:**
 
-![image](https://github.com/Matheus-Rian/cantinho_cesar/assets/98843736/d9728125-b86e-483f-abbb-b9e74ad0be1a)
+![Captura de Tela 2023-10-02 às 21 47 13](https://github.com/Matheus-Rian/cantinho_cesar/assets/53922139/97e156b4-af9d-497b-a494-a3f681425b30)
