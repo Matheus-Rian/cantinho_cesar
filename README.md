@@ -54,8 +54,8 @@ https://drive.google.com/file/d/1l-PggL4lX97P0CENTFJMVdzc-QCnXRch/view?usp=shari
 
 **Quadro no Jira:**
 
-![image](https://github.com/Matheus-Rian/cantinho_cesar/assets/101649965/9378e2c7-e3df-4c4f-a452-9cbe8b566efb)
+![Captura de Tela 2023-10-02 às 21 47 13](https://github.com/Matheus-Rian/cantinho_cesar/assets/53922139/97e156b4-af9d-497b-a494-a3f681425b30)
 
 **Backlog no Jira:**
 
-![Captura de Tela 2023-10-02 às 21 47 13](https://github.com/Matheus-Rian/cantinho_cesar/assets/53922139/97e156b4-af9d-497b-a494-a3f681425b30)
+![Captura de Tela 2023-10-02 às 21 50 30](https://github.com/Matheus-Rian/cantinho_cesar/assets/53922139/8a2a02e2-4aad-494a-85fa-58d866b63b39)
