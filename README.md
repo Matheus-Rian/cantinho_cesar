@@ -59,3 +59,19 @@ https://drive.google.com/file/d/1l-PggL4lX97P0CENTFJMVdzc-QCnXRch/view?usp=shari
 **Backlog no Jira:**
 
 ![Captura de Tela 2023-10-02 às 21 50 30](https://github.com/Matheus-Rian/cantinho_cesar/assets/53922139/8a2a02e2-4aad-494a-85fa-58d866b63b39)
+
+## Entrega 03
+
+**Lo-fi:**
+
+**Diagrama de atividades:**
+
+**Deployment**
+
+**CI/CD**
+
+**Testes de sistema automatizados**
+
+**Atualizção - programção em pares**
+
+**Quadro no Jira**
