@@ -42,3 +42,7 @@ def index(request):
 		'form': form['form'],
 		'products': get_products_by_vendinha(name=form['result'])
 	})
+
+def listar_produtos(request):
+    produtos = Product.objects.all()
+    return render(request, 'products/index.html', {'products': produtos})
