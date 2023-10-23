@@ -1,9 +1,13 @@
 from django.db import models
 
 class Product(models.Model):
-	name = models.CharField(max_length=200)
-	value = models.DecimalField(max_digits=10, decimal_places=2)
-	link = models.URLField()
+  name = models.CharField(max_length=200)
+  value = models.DecimalField(max_digits=10, decimal_places=2)
+  link = models.URLField()
+  stock = models.IntegerField(default=0)
+  disponivel = models.BooleanField(default=True)
+  def __str__(self):
+    return self.name
 
 class Vendinha(models.Model):
   name = models.CharField(max_length=200)
