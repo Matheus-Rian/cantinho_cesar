@@ -60,6 +60,14 @@ https://drive.google.com/file/d/1l-PggL4lX97P0CENTFJMVdzc-QCnXRch/view?usp=shari
 
 ![Captura de Tela 2023-10-02 às 21 50 30](https://github.com/Matheus-Rian/cantinho_cesar/assets/53922139/8a2a02e2-4aad-494a-85fa-58d866b63b39)
 
+**Issue/Bug tracker**
+
+![image](https://github.com/Matheus-Rian/cantinho_cesar/assets/98843736/6df11be9-6c3a-4be3-91fe-71dad3d57d17)
+
+![image](https://github.com/Matheus-Rian/cantinho_cesar/assets/98843736/45820979-61cf-4047-8a07-7a07a2e649cf)
+
+
+
 ## Entrega 03
 
 **Lo-fi:**
