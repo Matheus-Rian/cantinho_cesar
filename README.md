@@ -74,6 +74,8 @@ https://drive.google.com/file/d/1l-PggL4lX97P0CENTFJMVdzc-QCnXRch/view?usp=shari
 
 **Diagrama de atividades:**
 
+https://drive.google.com/file/d/1SQ0MdjNiM5fpcoFjU7Zw37nUbssNIpR2/view?usp=sharing
+
 **Deployment**
 
 **CI/CD**
