@@ -2,8 +2,13 @@ from django.shortcuts import render, HttpResponse, get_object_or_404
 from .forms import OptionsVendinha
 from .models import VendinhaController, Product, CartController
 from django.views import View
-from .models import Product  
+from .models import Product , UserProfile 
 from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.views.decorators.http import require_POST
+from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -46,3 +51,23 @@ def index(request):
 def listar_produtos(request):
     produtos = Product.objects.all()
     return render(request, 'products/index.html', {'products': produtos})
+
+def pagina_de_cadastro(request):
+    return render(request, "cadastro/cadastro.html")
+
+@require_POST
+def cadastrar_usuario(request):
+    try:
+        usuario_aux = User.objects.get(email=request.POST['email'])
+        if usuario_aux:
+            return render(request, 'cadastro/cadastro.html', {'msg': 'Erro! Já existe um usuário com o mesmo e-mail'})
+    except User.DoesNotExist:
+        nome_usuario = request.POST['nome-usuario']
+        email = request.POST['email']
+        senha = request.POST['senha']
+        novoUsuario = User.objects.create_user(username=nome_usuario, email=email, password=senha)
+        novoUsuario.save()
+        UserProfile.objects.create(user=novoUsuario)
+        login(request, novoUsuario)
+        return HttpResponseRedirect("/")
+    
