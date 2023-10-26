@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carrinho</title>
+</head>
+<body>
+    <h1>Seu Carrinho</h1>
+
+    <ul>
+        {% for product in products %}
+            <li>{{ product.name }} - R$ {{ product.value }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Total do Pedido: R$ {{ total }}</h2>
+
+  
+</body>
+</html>

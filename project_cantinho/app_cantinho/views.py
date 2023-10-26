@@ -1,8 +1,7 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404
 from .forms import OptionsVendinha
-from .models import VendinhaController, Product, CartController
+from .models import VendinhaController, Product, Cart,UserProfile
 from django.views import View
-from .models import Product , UserProfile 
 from django.shortcuts import render, HttpResponse, get_object_or_404
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
@@ -34,13 +33,24 @@ def get_result_by_form(request):
 
 	return { 'form': form, 'result': result }
 
-class Cart(View):
-    @login_required
-    def get(self, request, product_id, *args, **kwargs):
-        product_id = int(product_id)
-        product = get_object_or_404(Product, pk=product_id)
-        CartController.add_to_cart(product=product)
-        return HttpResponse(f"{product.name} adicionado ao carrinho!")
+@login_required
+def cart_home(request,product_id):
+    user = request.user
+
+    carrinho, created = Cart.objects.get_or_create(user=user)
+    produto = Product.objects.get(id=product_id)
+    carrinho.products.add(produto)
+    return HttpResponseRedirect("/carrinho/")
+
+@login_required
+def carrinho(request):
+    user = request.user
+    carrinho = Cart.objects.get(user=user)  
+    products = carrinho.products.all()
+    total = carrinho.total
+    
+    return render(request, 'carrinho/carrinho.html', {'products': products, 'total': total})
+
 
 
 index_page_html =  "app_cantinho/index.html"
