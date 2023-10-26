@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Meus Favoritos</title>
+</head>
+<body>
+    <h1>Meus Produtos Favoritados</h1>
+    
+    <ul>
+        {% for favorito in favoritos %}
+            <li>{{ favorito.product.name }} - R$ {{ favorito.product.value }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,8 +1,9 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404
 from .forms import OptionsVendinha
-from .models import VendinhaController, Product, Cart,UserProfile
+from .models import VendinhaController, Product, Cart,UserProfile,Favoritar
 from django.views import View
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
+from django.shortcuts import render, HttpResponse, get_object_or_404,redirect
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -121,3 +122,20 @@ def salvar_horario(request):
         return redirect("/carrinho/")
 
     return render(request, "carrinho.html")
+
+@login_required
+def add_favoritos(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    user = request.user
+    if not Favoritar.objects.filter(user=user, product=product).exists():
+        favoritar = Favoritar(user=user, product=product)
+        favoritar.save()
+    
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+@login_required
+def meus_favoritos(request):
+    user = request.user
+    favoritos = Favoritar.objects.filter(user=user)
+    return render(request, 'favoritos/favoritos.html', {'favoritos': favoritos})
+

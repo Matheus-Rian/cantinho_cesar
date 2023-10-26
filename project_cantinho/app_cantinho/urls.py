@@ -10,5 +10,7 @@ urlpatterns = [
   path("cadastrar_usuario/", views.cadastrar_usuario, name='cadastrar_usuario'),
   path("sair/", views.sair, name='sair'),
   path("entrar/", views.entrar, name='entrar'),
-  path("salvar_horario", views.salvar_horario, name="salvar_horario")
+  path("salvar_horario", views.salvar_horario, name="salvar_horario"),
+  path('meus-favoritos/', views.meus_favoritos, name='meus-favoritos'),
+  path('adicionar-aos-favoritos/<int:product_id>/', views.add_favoritos, name='adicionar-aos-favoritos'),
 ]
