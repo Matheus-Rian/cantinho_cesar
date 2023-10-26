@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from django.contrib import messages
 
 
 def get_products_by_vendinha(name):
@@ -35,15 +35,24 @@ def get_result_by_form(request):
 	return { 'form': form, 'result': result }
 
 class Cart(View):
-	def get(self, request, product_id, *args, **kwargs):
-		product_id = int(product_id)
-		product = get_object_or_404(Product, pk=product_id)
-		CartController.add_to_cart(product=product)
-		return HttpResponse(f"{product.name} adicionado ao carrinho!")
+    @login_required
+    def get(self, request, product_id, *args, **kwargs):
+        product_id = int(product_id)
+        product = get_object_or_404(Product, pk=product_id)
+        CartController.add_to_cart(product=product)
+        return HttpResponse(f"{product.name} adicionado ao carrinho!")
 
+
+index_page_html =  "app_cantinho/index.html"
 def index(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect("/menu/")
+    else:
+        return render(request, index_page_html)
+    
+def menu(request):
 	form = get_result_by_form(request=request)
-	return render(request, "home/index.html", {
+	return render(request, "menu/menu.html", {
 		'form': form['form'],
 		'products': get_products_by_vendinha(name=form['result'])
 	})
@@ -69,5 +78,23 @@ def cadastrar_usuario(request):
         novoUsuario.save()
         UserProfile.objects.create(user=novoUsuario)
         login(request, novoUsuario)
+        return HttpResponseRedirect("/menu/")
+
+@require_POST
+def entrar(request):
+    try:
+        usuario_aux = User.objects.get(email=request.POST['email'])
+    except User.DoesNotExist:
+        messages.error(request, "Usuário não existe ou credenciais incorretas")
         return HttpResponseRedirect("/")
     
+    usuario = authenticate(username=usuario_aux.username,password=request.POST["senha"])
+    if usuario is not None:
+        login(request, usuario)
+        return HttpResponseRedirect('/menu/')
+    return HttpResponseRedirect("/")
+    
+@login_required
+def sair(request):
+    logout(request)
+    return HttpResponseRedirect("/")

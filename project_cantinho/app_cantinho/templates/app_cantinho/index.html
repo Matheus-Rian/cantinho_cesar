@@ -1,0 +1,36 @@
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app_attos.css' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+  </head>
+  
+  <main class="main-container">
+    <form method="post" action="{% url 'entrar' %}">
+      {% csrf_token %}
+      <div class="container-inputs">
+        <label class="label" for="email">E-mail</label>
+        <input class="input" id="email" type="email" name="email" required>
+        <label class="label" for="senha">Senha</label>
+        <input class="input" id="senha" type="password" name="senha" required>
+        
+        <button type="submit" value="Entrar" class="submit">
+          Entrar
+        </button>
+      </div>
+    </form>
+    <div style="text-align: center;">
+      <span>É novo por aqui? </span>
+      <a href="{% url 'cadastrar' %}">Cadastre-se</a>
+    </div>
+    
+    <div style="text-align: center;">
+      {% if messages %}
+        <ul class="messages" style="list-style-type: none; padding: 0;">
+          {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </main>
+  
