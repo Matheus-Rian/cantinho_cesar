@@ -14,6 +14,21 @@
 
     <h2>Total do Pedido: R$ {{ total }}</h2>
 
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form method="post" action="{% url 'salvar_horario' %}">
+        {% csrf_token %}
+        <label for="hora_retirada">Horário de Retirada:</label>
+        <input type="time" id="hora_retirada" name="hora_retirada" required>
+        <input type="submit" name="salvar_horario" value="Salvar Hora">
+    </form>
+
   
 </body>
 </html>

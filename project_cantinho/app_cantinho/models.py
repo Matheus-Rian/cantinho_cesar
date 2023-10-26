@@ -18,9 +18,10 @@ class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null = True, blank = True)
     products = models.ManyToManyField(Product, blank = True)
     total = models.DecimalField(default = 0.00, max_digits=100, decimal_places = 2)
-    
+    hora_retirada = models.TimeField(null=True, blank=True)
     def __str__(self):
         return str(self.id)
+    
 class VendinhaController():
   def get_vendinha_by_name(name):
     return Vendinha.objects.get(name=name)

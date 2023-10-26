@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse, get_object_or_404
 from .forms import OptionsVendinha
 from .models import VendinhaController, Product, Cart,UserProfile
 from django.views import View
-from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -108,3 +108,16 @@ def entrar(request):
 def sair(request):
     logout(request)
     return HttpResponseRedirect("/")
+
+@login_required
+def salvar_horario(request):
+    if request.method == "POST":
+        hora_retirada = request.POST.get("hora_retirada")
+        user = request.user
+        carrinho, created = Cart.objects.get_or_create(user=user)
+        carrinho.hora_retirada = hora_retirada
+        carrinho.save()
+        messages.success(request, "Horário salvo com sucesso.")
+        return redirect("/carrinho/")
+
+    return render(request, "carrinho.html")

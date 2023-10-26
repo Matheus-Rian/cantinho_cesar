@@ -10,4 +10,5 @@ urlpatterns = [
   path("cadastrar_usuario/", views.cadastrar_usuario, name='cadastrar_usuario'),
   path("sair/", views.sair, name='sair'),
   path("entrar/", views.entrar, name='entrar'),
+  path("salvar_horario", views.salvar_horario, name="salvar_horario")
 ]
