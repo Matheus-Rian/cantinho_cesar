@@ -1,36 +1,47 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Carrinho</title>
+    <link rel="stylesheet" href="{% static 'carrinho.css' %}">
 </head>
+
 <body>
-    <h1>Seu Carrinho</h1>
+    <main class="main-container">
+        <div class="container-inputs">
+            <h1 class="barra">Seu Carrinho</h1>
 
-    <ul>
-        {% for product in products %}
-            <li>{{ product.name }} - R$ {{ product.value }}</li>
-        {% endfor %}
-    </ul>
+            <ul class=".lista-sem-marcador " >
+                {% for product in products %}
+                <li>{{ product.name }} - R$ {{ product.value }}</li>
+                {% endfor %}
+            </ul>
 
-    <h2>Total do Pedido: R$ {{ total }}</h2>
+            <h4 class="total">Total: R$ {{ total }}</h4>
+            
+            <form class="horario-retirada" method="post" action="{% url 'salvar_horario' %}">
+                {% csrf_token %}
+                <label for="hora_retirada">Horário de Retirada</label>
+                <br>
+                <div class="alinhar-horario">
+                <input type="time" id="hora_retirada" name="hora_retirada" required>
+                <input class="salvar" type="submit" name="salvar_horario" value="Salvar">
+            </div>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                        {% endfor %}
+                </ul>
+                {% endif %}
+                <a href="{% url 'menu' %}">
+                    <button class="continuar_comprando" type="button">Continuar Comprando</button>
+                </a>
+            </form>
+        </div>
+    </main>
 
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-
-    <form method="post" action="{% url 'salvar_horario' %}">
-        {% csrf_token %}
-        <label for="hora_retirada">Horário de Retirada:</label>
-        <input type="time" id="hora_retirada" name="hora_retirada" required>
-        <input type="submit" name="salvar_horario" value="Salvar Hora">
-        
-        <a href="{% url 'menu' %}">
-            <button type="button">Continuar Comprando</button>
-        </a>
-    </form>
 </body>
+
 </html>
