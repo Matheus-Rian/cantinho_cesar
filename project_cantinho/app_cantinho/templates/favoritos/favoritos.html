@@ -1,22 +1,38 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <title>Meus Favoritos</title>
+    <link rel="stylesheet" href="{% static 'favoritos.css' %}">
 </head>
+
 <body>
-    <h1>Meus Produtos Favoritados</h1>
-    
-    <ul>
-        {% for favorito in favoritos %}
-            <li>
-                {{ favorito.product.name }} - R$ {{ favorito.product.value }}
-                <form method="POST" action="{% url 'remover-dos-favoritos' favorito.product.id %}">
-                    {% csrf_token %}
-                    <button type="submit">Remover dos Favoritos</button>
-                </form>
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <main class="main-container">
+            <a href="{% url 'menu' %}">
+                <img class="img-seta" src="{% static 'images/seta.png' %}" alt="Logo img_cantinho_cesar">
+            </a>
+            <div class="container-inputs">
+                
+                <h1 class="barra">Meus Produtos Favoritos</h1>
+
+                <ul class="alinhar">
+                    {% for favorito in favoritos %}
+                    <li class="favorito-item">
+                      <span class="favorito-info">{{ favorito.product.name }} - R$ {{ favorito.product.value }}</span>
+                      <form method="POST" action="{% url 'remover-dos-favoritos' favorito.product.id %}">
+                        {% csrf_token %}
+                        <button class= "remover" type="submit">Remover</button>
+                      </form>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                  
+            </div>
+        </main>
+    </div>
 </body>
+
 </html>
