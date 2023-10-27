@@ -1,30 +1,43 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 	<meta charset="UTF-8">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'forms.css' %}">
 	<title>Home</title>
 </head>
-<body>
-	<form method="post" action="{% url 'sair' %}" style="margin: 10px 0;">
-        {% csrf_token %}
-        <input type="submit" value="Sair" style="width: 30%; background-color: #007bff; color: #fff; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
-    </form>
-	<a href="{% url 'meus-favoritos' %}">Meus Favoritos</a>
-	<form method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit">
-	</form>
 
+<body>
+
+	<header class="header">
+		<img class="img" src="{% static 'images/img_cantinho_cesar.png' %}" alt="Logo img_cantinho_cesar">
+		<nav class="nav-links">
+			<a href="{% url 'meus-favoritos' %}">Meus Favoritos</a>
+			<form method="post" action="{% url 'sair' %}">
+				{% csrf_token %}
+				<input type="submit" value="Sair" class="btn-sair">
+			</form>
+		</nav>
+	</header>
+	<form method="post" id="options-form">
+		{% csrf_token %}
+		{{ form.Selecione }}
+		<input type="submit" value="Selecionar" class="custom-button">
+	</form>
+	
+	
 	<main class="container">
-	{% if products %}
+		{% if products %}
 		<div class="row">
 			{% include "products/index.html" with data="products" %}
 		</div>
-  {% else %}
-    <p>No Products are available.</p>
-  {% endif %}
+		{% else %}
+		<p>No Products are available.</p>
+		{% endif %}
 	</main>
 </body>
+
 </html>
