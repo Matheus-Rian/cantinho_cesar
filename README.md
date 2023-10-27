@@ -6,7 +6,6 @@ Nossa empolgante proposta envolve a criação de uma aplicação web altamente f
 
 **Integrantes do grupo:**
 - Julia Felix Cordeiro
-- Matheus Rian de Souza Silva
 - Matheus Roberto Inocêncio Oliveira
 - Talita Daniele Lins Fraga 
 - Victor Guilherme Alves Costa
