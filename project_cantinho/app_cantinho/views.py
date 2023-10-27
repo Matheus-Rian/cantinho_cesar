@@ -21,7 +21,7 @@ def get_result_by_form(request):
 	if request.method == 'POST':
 		form = OptionsVendinha(request.POST)
 		if form.is_valid():
-			option = form.cleaned_data['choices']
+			option = form.cleaned_data['Selecione']
 		if option == 'BRUM':
 			result = 'Brum'
 		elif option == 'TIRADENTES':
