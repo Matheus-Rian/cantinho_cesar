@@ -1,42 +1,57 @@
-<head style="text-align: center;">
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'app_attos.css' %}">
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="{% static 'app_cantinho.css' %}">
   <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
-<div style="max-width: 400px; margin: 100px auto; padding: 50px; background-color: #f2f2f2; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
-<main class="main-container">
-  <form method="post" action="{% url 'entrar' %}">
-    {% csrf_token %}
-    <div class="container-inputs">
-      <label class="label" for="email">E-mail</label>
-      <br>
-      <input class="input" id="email" type="email" name="email" required>
-      <br>
-      <br>
-      <label class="label" for="senha">Senha</label>
-      <br>
-      <input  class="input" id="senha" type="password" name="senha" required>
-      <br>
-      <br>
-      <button type="submit" class="submit" style="width: 50%; background-color: #ff9e0d; color: #fff; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
-        Entrar
-    </button>
-    
-    </div>
-  </form>
-  <div style="text-align: center;">
-    <span>É novo por aqui? </span>
-    <a href="{% url 'cadastrar' %}">Cadastre-se</a>
+
+<body>
+  <div class="container">
+    <main class="main-container">
+      <form method="post" action="{% url 'entrar' %}">
+        {% csrf_token %}
+
+        <div class="container-inputs">
+
+          <img class="img" src="{% static 'images/img_cantinho_cesar.png' %}" alt="Logo img_cantinho_cesar">
+          <br>
+          <label class="label_email" for="email">E-mail</label>
+          <br>
+          <input id="email" type="email" name="email" required>
+          <br>
+          <br>
+          <label class="label_senha" for="senha">Senha</label>
+          <br>
+          <input id="senha" type="password" name="senha" required>
+          <br>
+          <br>
+          <br>
+          <button type="submit" class="submit">
+            Entrar
+          </button>
+          <br>
+          <div class="text-center">
+            <br>
+            <span>É novo por aqui? </span>
+            <a href="{% url 'cadastrar' %}">Cadastre-se</a>
+          </div>
+        </div>
+
+      </form>
+
+      <div class="text-center">
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    </main>
   </div>
-  
-  <div style="text-align: center;">
-    {% if messages %}
-      <ul class="messages" style="list-style-type: none; padding: 0;">
-        {% for message in messages %}
-          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  </div>
-</main>
-</div>
+</body>
+
+</html>

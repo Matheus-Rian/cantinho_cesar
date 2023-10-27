@@ -1,29 +1,35 @@
 <head>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'cadastro.css' %}">
 </head>
+<div>
+    <main class="main-container">
+        <form method="post" action="{% url 'cadastrar_usuario' %}">
+            {% csrf_token %}
+            <div class="container-inputs">
+                <label class="label">Nome</label>
+                <br>
+                <input class="input" type="text" name="nome-usuario" required>
+                <br>
+                <br>
+                <label class="label">E-mail</label>
+                <br>
+                <input class="input" type="email" name="email" id="email" required>
+                <br>
+                <br>
+                <label class="label">Senha</label>
+                <br>
+                <input class="input" type="password" name="senha" required>
+                <br>
+                <br>
+                <br>
+                <input type="submit" value="Cadastrar" class="submit">
+                <br>
+                <div class="text-center">
+                    <p>Deseja fazer login? <a href="{% url 'index' %}" class="login-link">Login</a></p>
+                </div>
+            </div>
+    </main>
+</div>
 
-<form method="post" action="{% url 'cadastrar_usuario' %}">
-    {% csrf_token %}
-    <div style="max-width: 400px; margin: 100px auto; padding: 50px; background-color: #f2f2f2; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
-        <label>Nome</label>
-        <br>
-        <input type="text" name="nome-usuario" required class="input">
-        <br>
-        <br>
-        <label>E-mail</label>
-        <br>
-        <input type="email" name="email" required class="input">
-        <br>
-        <br>
-        <label>Senha</label>
-        <br>
-        <input type="password" name="senha"  required class="input">
-        <br>
-        <br>
-        <input type="submit" value="Cadastrar" style="width: 50%; background-color:#FF9E0D; color: #fff; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
-        <div style="text-align: center;">
-            <p style="text-align: center;">Deseja fazer login? <a href="{% url 'index' %}">Login</a></p>
-        </div>
-    </div>
 </form>
