@@ -24,7 +24,7 @@ jobs:
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r project_cantinho/requirements.txt
+        pip install -r project_cantinho\requirements.txt
     - name: Make Migrations
       run: |
         python manage.py makemigrations
