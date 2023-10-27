@@ -9,8 +9,9 @@
             {% else %}
                 <a href="{% url 'carrinho' product.id %}" class="btn btn-primary add-to-cart">Adicionar ao carrinho</a>
                 <form method="POST" action="{% url 'adicionar-aos-favoritos' product.id %}">
+                    <br>
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-success">Adicionar aos Favoritos</button>
+                    <button type="submit" class="btn btn-success">Favoritar</button>
                 </form>
             {% endif %}
         </div>
