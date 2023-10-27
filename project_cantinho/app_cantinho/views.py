@@ -123,6 +123,13 @@ def salvar_horario(request):
 
     return render(request, "carrinho.html")
 
+
+@login_required
+def meus_favoritos(request):
+    user = request.user
+    favoritos = Favoritar.objects.filter(user=user)
+    return render(request, 'favoritos/favoritos.html', {'favoritos': favoritos})
+
 @login_required
 def add_favoritos(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
@@ -134,8 +141,14 @@ def add_favoritos(request, product_id):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 @login_required
-def meus_favoritos(request):
+def remover_dos_favoritos(request, product_id):
     user = request.user
-    favoritos = Favoritar.objects.filter(user=user)
-    return render(request, 'favoritos/favoritos.html', {'favoritos': favoritos})
+    product = get_object_or_404(Product, pk=product_id)
 
+    try:
+        favorito = Favoritar.objects.get(user=user, product=product)
+        favorito.delete()
+    except Favoritar.DoesNotExist:
+        pass 
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

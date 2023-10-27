@@ -9,7 +9,13 @@
     
     <ul>
         {% for favorito in favoritos %}
-            <li>{{ favorito.product.name }} - R$ {{ favorito.product.value }}</li>
+            <li>
+                {{ favorito.product.name }} - R$ {{ favorito.product.value }}
+                <form method="POST" action="{% url 'remover-dos-favoritos' favorito.product.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Remover dos Favoritos</button>
+                </form>
+            </li>
         {% endfor %}
     </ul>
 </body>
