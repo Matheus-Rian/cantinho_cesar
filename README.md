@@ -88,3 +88,8 @@ https://drive.google.com/file/d/1SQ0MdjNiM5fpcoFjU7Zw37nUbssNIpR2/view?usp=shari
 **Atualizção - programção em pares**
 
 **Quadro no Jira**
+
+![image](https://github.com/mateusioliveira/cantinho_cesar/assets/98843736/6b9e2fae-9f4e-435d-85b3-a01516c4db6c)
+![image](https://github.com/mateusioliveira/cantinho_cesar/assets/98843736/36c2427f-a393-46ef-8a98-33ba40b705d2)
+
+
