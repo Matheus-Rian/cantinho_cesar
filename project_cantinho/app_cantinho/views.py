@@ -2,8 +2,6 @@ from django.shortcuts import render, HttpResponse, get_object_or_404
 from .forms import OptionsVendinha
 from .models import VendinhaController, Product, Cart,UserProfile,Favoritar, Pedido
 from django.views import View
-from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
-from django.shortcuts import render, HttpResponse, get_object_or_404,redirect
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -11,7 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .utils import total_pedido, atualizar_estoque_produto
-import random, string, time
+import random, string
 
 def get_products_by_vendinha(name):
   vendinha = VendinhaController.get_vendinha_by_name(name=name)
