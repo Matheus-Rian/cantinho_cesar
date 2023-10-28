@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from .forms import OptionsVendinha
 from .models import VendinhaController, Product, Cart,UserProfile,Favoritar, Pedido
 from django.views import View
