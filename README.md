@@ -11,6 +11,10 @@ Nossa empolgante proposta envolve a criação de uma aplicação web altamente f
 - Victor Guilherme Alves Costa
 - Vitória Régia da Silva
 
+**Projeto no Jira:**
+
+https://cantinho-cesar.atlassian.net/jira/software/projects/CC/boards/1
+
 ## Entrega 01
 
 **Protótipo de Lo-Fi:**
@@ -23,7 +27,7 @@ https://drive.google.com/file/d/1rJyL1dB7V3c8LagASpUvyNqs-WlZa4uV/view?usp=shari
 
 **Projeto no Jira:**
 
-https://funddesoftware.atlassian.net/jira/software/projects/KAN/boards/1
+https://cantinho-cesar.atlassian.net/jira/software/projects/CC/boards/1
 
 **Quadro no Jira:**
 
