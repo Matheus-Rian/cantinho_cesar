@@ -38,7 +38,6 @@ def get_result_by_form(request):
 @login_required
 def cart_home(request,product_id):
     user = request.user
-
     carrinho, created = Cart.objects.get_or_create(user=user)
     produto = Product.objects.get(id=product_id)
     carrinho.products.add(produto)
