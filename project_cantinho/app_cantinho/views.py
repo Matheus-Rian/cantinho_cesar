@@ -49,7 +49,9 @@ def carrinho(request):
     user = request.user
     carrinho = Cart.objects.get(user=user)  
     products = carrinho.products.all()
-    total = carrinho.total
+    total = sum(product.value for product in products)
+    carrinho.total = total
+    carrinho.save()
     
     return render(request, 'carrinho/carrinho.html', {'products': products, 'total': total})
 
@@ -116,9 +118,9 @@ def salvar_horario(request):
     if request.method == "POST":
         hora_retirada = request.POST.get("hora_retirada")
         user = request.user
-        carrinho, created = Cart.objects.get_or_create(user=user)
-        carrinho.hora_retirada = hora_retirada
-        carrinho.save()
+        pedido, created = Pedido.objects.get_or_create(user=user)
+        pedido.hora_retirada = hora_retirada
+        pedido.save()
         messages.success(request, "Horário salvo com sucesso.")
         return redirect("/carrinho/")
 
@@ -172,13 +174,13 @@ def pagamento(request):
             pedido.save()
             return HttpResponse(f"Seu código PIX para pagamento: {pedido.codigo_pix}")
 
-        elif metodo_pagamento == "cartao":
-            pagamento_simulado = pagamento_com_cartao()
-            if pagamento_simulado:
-                pedido = Pedido.objects.create(user=request.user, status_pagamento="paid")
+        # elif metodo_pagamento == "cartao":
+        #     pagamento_simulado = pagamento_com_cartao()
+        #     if pagamento_simulado:
+        #         pedido = Pedido.objects.create(user=request.user, status_pagamento="paid")
 
-                return HttpResponse("Pagamento com cartão bem-sucedido. Pedido registrado.")
-            return HttpResponse("Erro no pagamento com cartão. Verifique as informações do cartão.")
+        #         return HttpResponse("Pagamento com cartão bem-sucedido. Pedido registrado.")
+        #     return HttpResponse("Erro no pagamento com cartão. Verifique as informações do cartão.")
 
         
         elif metodo_pagamento == "pagar_retirada":
@@ -189,3 +191,34 @@ def pagamento(request):
             return HttpResponse("Seu pedido foi registrado. O pagamento será efetuado na retirada.")
     
     return render(request, 'pagamento/pagamento.html')
+
+@login_required
+def finalizar_compra(request):
+    if request.method == "POST":
+        user = request.user
+
+        carrinho, created = Cart.objects.get_or_create(user=user)
+        items = carrinho.products.all()
+        total = sum(item.value for item in items)
+        for item in items:
+            produto = item
+            quantidade_no_carrinho = item.quantidade
+
+            if produto.stock >= quantidade_no_carrinho:
+                produto.stock -= quantidade_no_carrinho
+                produto.save()
+            else:
+                return HttpResponse("Desculpe, não há estoque suficiente para um ou mais produtos.")
+
+
+        pedido = Pedido.objects.create(user=user, total=carrinho.total, hora_retirada=carrinho.hora_retirada)
+        pedido.products.set(items)
+        pedido.save()
+
+        carrinho.products.clear()
+        carrinho.total = 0.00
+        carrinho.save()
+
+        return redirect('pagina_de_sucesso')
+
+    return render(request, 'finalizar/finalizar_compra.html')
