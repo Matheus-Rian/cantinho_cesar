@@ -20,12 +20,12 @@ class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null = True, blank = True)
     products = models.ManyToManyField(Product, blank = True)
     total = models.DecimalField(default = 0.00, max_digits=100, decimal_places = 2)
-    hora_retirada = models.TimeField(null=True, blank=True)
     def __str__(self):
         return str(self.id)
     
 class Pedido(models.Model):
   user = models.ForeignKey(User, on_delete=models.CASCADE, null = True, blank = True)
+  cart = models.ForeignKey(Cart, on_delete=models.CASCADE, null = True, blank = True)  
   products = models.ManyToManyField(Product, blank = True)
   total = models.DecimalField(default = 0.00, max_digits=100, decimal_places = 2)
   hora_retirada = models.TimeField(null=True, blank=True)
@@ -33,6 +33,10 @@ class Pedido(models.Model):
   codigo_pix = models.CharField(max_length=20, blank=True, null=True)
   def __str__(self):
       return str(self.id)
+  @classmethod
+  def create_with_default_cart(cls, user):
+      cart, _ = Cart.objects.get_or_create(user=user)
+      return cls.objects.create(user=user, cart=cart)
     
     
 class VendinhaController():

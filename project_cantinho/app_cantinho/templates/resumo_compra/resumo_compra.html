@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resumo da Compra</title>
+</head>
+<body>
+    <h1>Resumo da Compra</h1>
+
+    <h2>Produtos Comprados:</h2>
+    <ul>
+        {% for produto in produtos %}
+            <li>{{ produto.name }} - R$ {{ produto.value }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Total: R$ {{ total }}</h2>
+    
+    <h2>Horário de Retirada: {{ hora_retirada }}</h2>
+    
+    <h2>Status de Pagamento: {{ status_pagamento }}</h2>
+</body>
+</html>

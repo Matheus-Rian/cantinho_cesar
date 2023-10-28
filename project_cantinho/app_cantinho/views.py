@@ -10,7 +10,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .pagamento_utils import pagamento_com_cartao
+from .utils import total_pedido, atualizar_estoque_produto
 import random, string, time
 
 def get_products_by_vendinha(name):
@@ -117,10 +117,16 @@ def salvar_horario(request):
     if request.method == "POST":
         hora_retirada = request.POST.get("hora_retirada")
         user = request.user
-        pedido, created = Pedido.objects.get_or_create(user=user)
-        pedido.hora_retirada = hora_retirada
-        pedido.save()
-        messages.success(request, "Horário salvo com sucesso.")
+
+        pedidos_em_andamento = Pedido.objects.filter(user=user, status_pagamento__in=["pending"])
+
+
+        if not pedidos_em_andamento.exists():
+            pedido = Pedido.objects.create(user=user, status_pagamento="pending", hora_retirada=hora_retirada)
+            messages.success(request, "Novo pedido criado com horário.")
+        else:
+            messages.warning(request, "Já existe um pedido em andamento ou pago. Você não pode criar um novo.")
+
         return redirect("/carrinho/")
 
     return render(request, "carrinho.html")
@@ -157,67 +163,67 @@ def remover_dos_favoritos(request, product_id):
 
 @login_required
 def pagamento(request):
+    
     if request.method == "POST":
         metodo_pagamento = request.POST.get("metodo_pagamento")
 
         if metodo_pagamento == "pix":
             user = request.user
-            pedido, created = Pedido.objects.get_or_create(user=user)
+            carrinho = Cart.objects.get(user=user)
+            pedido = Pedido.objects.filter(user=user, status_pagamento="pending").first()
 
-            pedido.codigo_pix = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
-            pedido.status_pagamento = "pending"
-            pedido.save()
+            if pedido:
+                pedido.cart = carrinho
+                pedido.products.set(carrinho.products.all())
+                total = total_pedido(pedido)
+                pedido.total = total
+                pedido.codigo_pix = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+                pedido.status_pagamento = "paid"
+                pedido.save()
 
-            time.sleep(10)
-            pedido.status_pagamento = "paid"
-            pedido.save()
-            return HttpResponse(f"Seu código PIX para pagamento: {pedido.codigo_pix}")
+                atualizar_estoque_produto(pedido)
 
-        # elif metodo_pagamento == "cartao":
-        #     pagamento_simulado = pagamento_com_cartao()
-        #     if pagamento_simulado:
-        #         pedido = Pedido.objects.create(user=request.user, status_pagamento="paid")
-
-        #         return HttpResponse("Pagamento com cartão bem-sucedido. Pedido registrado.")
-        #     return HttpResponse("Erro no pagamento com cartão. Verifique as informações do cartão.")
-
+                carrinho.products.clear()
+                carrinho.total = 0.00
+                carrinho.save()
+                return HttpResponse(f"Seu código PIX para pagamento: {pedido.codigo_pix}")
         
         elif metodo_pagamento == "pagar_retirada":
             user = request.user
-            pedido, created = Pedido.objects.get_or_create(user=user)
-            pedido.status_pagamento = "pending"
-            pedido.save()
-            return HttpResponse("Seu pedido foi registrado. O pagamento será efetuado na retirada.")
+            pedido = Pedido.objects.filter(user=user, status_pagamento="pending").first()
+            carrinho = Cart.objects.get(user=user)
+            if pedido:
+                pedido.cart = carrinho
+                pedido.products.set(carrinho.products.all())
+                total = total_pedido(pedido)
+                pedido.total = total
+                pedido.status_pagamento = "pending"
+                pedido.save()
+                return HttpResponse("Seu pedido foi registrado. O pagamento será efetuado na retirada.")
+
     
     return render(request, 'pagamento/pagamento.html')
 
-@login_required
-def finalizar_compra(request):
-    if request.method == "POST":
-        user = request.user
-
-        carrinho, created = Cart.objects.get_or_create(user=user)
-        items = carrinho.products.all()
-        total = sum(item.value for item in items)
-        for item in items:
-            produto = item
-            quantidade_no_carrinho = item.quantidade
-
-            if produto.stock >= quantidade_no_carrinho:
-                produto.stock -= quantidade_no_carrinho
-                produto.save()
-            else:
-                return HttpResponse("Desculpe, não há estoque suficiente para um ou mais produtos.")
+def resumo_compra(request):
+    user = request.user
+    carrinho = Cart.objects.get(user=user)
+    produtos = carrinho.products.all()
+    total = sum(produto.value for produto in produtos)
 
 
-        pedido = Pedido.objects.create(user=user, total=carrinho.total, hora_retirada=carrinho.hora_retirada)
-        pedido.products.set(items)
-        pedido.save()
+    pedido = Pedido.objects.filter(user=user).order_by('-id').first()
 
-        carrinho.products.clear()
-        carrinho.total = 0.00
-        carrinho.save()
+    if pedido:
+        status_pagamento = pedido.status_pagamento
+    else:
+        status_pagamento = "Não encontrado" 
 
-        return redirect('pagina_de_sucesso')
+    context = {
+        'produtos': produtos,
+        'total': total,
+        'hora_retirada': pedido.hora_retirada,
+        'status_pagamento': status_pagamento,
+    }
 
-    return render(request, 'finalizar/finalizar_compra.html')
+    return render(request, 'resumo_compra/resumo_compra.html', context)
+
