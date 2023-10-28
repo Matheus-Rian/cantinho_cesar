@@ -38,7 +38,6 @@ def get_result_by_form(request):
 @login_required
 def cart_home(request,product_id):
     user = request.user
-
     carrinho, created = Cart.objects.get_or_create(user=user)
     produto = Product.objects.get(id=product_id)
     carrinho.products.add(produto)
@@ -49,7 +48,7 @@ def carrinho(request):
     user = request.user
     carrinho = Cart.objects.get(user=user)  
     products = carrinho.products.all()
-    total = carrinho.total
+    total = sum(product.value for product in products)
     
     return render(request, 'carrinho/carrinho.html', {'products': products, 'total': total})
 
