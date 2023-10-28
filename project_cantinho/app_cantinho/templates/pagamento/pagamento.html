@@ -1,0 +1,20 @@
+<form method="post" action="{% url 'pagamento' %}">
+    {% csrf_token %}
+    
+    <label>
+        <input type="radio" name="metodo_pagamento" value="pix">
+        PIX
+    </label><br>
+
+    <label>
+        <input type="radio" name="metodo_pagamento" value="cartao">
+        Cartão de Crédito/Débito
+    </label><br>
+
+    <label>
+        <input type="radio" name="metodo_pagamento" value="pagar_retirada">
+        Pagar na Retirada
+    </label><br>
+
+    <button type="submit">Pagar</button>
+</form>

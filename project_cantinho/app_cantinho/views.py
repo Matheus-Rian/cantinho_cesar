@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404
 from .forms import OptionsVendinha
-from .models import VendinhaController, Product, Cart,UserProfile,Favoritar
+from .models import VendinhaController, Product, Cart,UserProfile,Favoritar, Pedido
 from django.views import View
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from django.shortcuts import render, HttpResponse, get_object_or_404,redirect
@@ -10,7 +10,8 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
+from .pagamento_utils import pagamento_com_cartao
+import random, string, time
 
 def get_products_by_vendinha(name):
   vendinha = VendinhaController.get_vendinha_by_name(name=name)
@@ -152,3 +153,39 @@ def remover_dos_favoritos(request, product_id):
         pass 
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+@login_required
+def pagamento(request):
+    if request.method == "POST":
+        metodo_pagamento = request.POST.get("metodo_pagamento")
+
+        if metodo_pagamento == "pix":
+            user = request.user
+            pedido, created = Pedido.objects.get_or_create(user=user)
+
+            pedido.codigo_pix = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+            pedido.status_pagamento = "pending"
+            pedido.save()
+
+            time.sleep(10)
+            pedido.status_pagamento = "paid"
+            pedido.save()
+            return HttpResponse(f"Seu código PIX para pagamento: {pedido.codigo_pix}")
+
+        elif metodo_pagamento == "cartao":
+            pagamento_simulado = pagamento_com_cartao()
+            if pagamento_simulado:
+                pedido = Pedido.objects.create(user=request.user, status_pagamento="paid")
+
+                return HttpResponse("Pagamento com cartão bem-sucedido. Pedido registrado.")
+            return HttpResponse("Erro no pagamento com cartão. Verifique as informações do cartão.")
+
+        
+        elif metodo_pagamento == "pagar_retirada":
+            user = request.user
+            pedido, created = Pedido.objects.get_or_create(user=user)
+            pedido.status_pagamento = "pending"
+            pedido.save()
+            return HttpResponse("Seu pedido foi registrado. O pagamento será efetuado na retirada.")
+    
+    return render(request, 'pagamento/pagamento.html')
