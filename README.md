@@ -77,6 +77,8 @@ https://drive.google.com/file/d/1l-PggL4lX97P0CENTFJMVdzc-QCnXRch/view?usp=shari
 
 https://www.figma.com/file/cZh0hUIUmtqFVyaUKbsbk9/CANTINHO-CESAR?type=design&node-id=0%3A1&mode=design&t=Pt1c0JUGYfwzTsPZ-1
 
+**Screencast Lo-fi**
+
 https://drive.google.com/file/d/1eyjKy4HhVETHTGU6RhWGZ-_cFU_5Ia3p/view?usp=sharing
 
 **Diagrama de atividades atualizado:**
