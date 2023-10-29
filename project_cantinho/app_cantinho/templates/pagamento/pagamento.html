@@ -1,15 +1,30 @@
-<form method="post" action="{% url 'pagamento' %}">
-    {% csrf_token %}
+{% load static %}
+<html>
 
-    <label>
-        <input type="radio" name="metodo_pagamento" value="pix" id="pix">
-        PIX
-    </label><br>
+<head>
+    <link rel="stylesheet" href="{% static 'pagamento.css' %}">
+</head>
 
-    <label>
-        <input type="radio" name="metodo_pagamento" value="pagar_retirada" id="pagar_retirada">
-        Pagar na Retirada
-    </label><br>
+<body>
+    <main class="main-container">
+        <div class="container-inputs">
+            <h1 class="barra">Forma de pagamento</h1>
+            <form method="post" action="{% url 'pagamento' %}">
+                {% csrf_token %}
 
-    <button type="submit" name="botao_pagar">Pagar</button>
-</form>
+                <label>
+                    <input type="radio" name="metodo_pagamento" value="pix" id="pix">
+                    PIX
+                </label><br>
+                <br>
+                <label>
+                    <input type="radio" name="metodo_pagamento" value="pagar_retirada" id="pagar_retirada">
+                    Pagar na retirada
+                </label><br>
+
+                <button type="submit" class="confirmar-pagamento" name="botao_pagar">Fazer pedido</button>
+            </form>
+        </div>
+    </main>
+
+</html>

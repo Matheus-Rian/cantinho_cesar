@@ -1,22 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Resumo da Compra</title>
+    <link rel="stylesheet" href="{% static 'resumo.css' %}">
 </head>
+
 <body>
-    <h1>Resumo da Compra</h1>
+    <main class="main-container">
+        <div class="container-inputs">
+            <h1 class="barra">Resumo da compra</h1>
 
-    <h2>Produtos Comprados:</h2>
-    <ul>
-        {% for produto in produtos %}
-            <li>{{ produto.name }} - R$ {{ produto.value }}</li>
-        {% endfor %}
-    </ul>
+            <h2>Produtos Comprados:</h2>
+            <ul>
+                {% for produto in produtos %}
+                <li>{{ produto.name }} - R$ {{ produto.value }}</li>
+                {% endfor %}
+            </ul>
 
-    <h2>Total: R$ {{ total }}</h2>
-    
-    <h2>Horário de Retirada: {{ hora_retirada }}</h2>
-    
-    <h2>Status de Pagamento: {{ status_pagamento }}</h2>
+            <h2>Total: R$ {{ total }}</h2>
+
+            <h3>Horário de Retirada: {{ hora_retirada }}</h3>
+
+            <h3>Status de Pagamento: {{ status_pagamento }}</h3>
+        </div>
+    </main>
 </body>
+
+</html>
+
 </html>
