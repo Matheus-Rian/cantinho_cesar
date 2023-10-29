@@ -15,7 +15,7 @@
 	<header class="header">
 		<img class="img" src="{% static 'images/img_cantinho_cesar.png' %}" alt="Logo img_cantinho_cesar">
 		<nav class="nav-links">
-			<a href="{% url 'meus-favoritos' %}">Meus Favoritos</a>
+			<a href="{% url 'meus-favoritos' %}" id="meus_favoritos">Meus Favoritos</a>
 			<form method="post" action="{% url 'sair' %}">
 				{% csrf_token %}
 				<input type="submit" value="Sair" class="btn-sair">
@@ -27,8 +27,8 @@
 		{{ form.Selecione }}
 		<input type="submit" value="Selecionar" class="custom-button">
 	</form>
-	
-	
+
+
 	<main class="container">
 		{% if products %}
 		<div class="row">

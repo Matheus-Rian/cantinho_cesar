@@ -2,7 +2,7 @@
     <div class="card me-4 ms-4 mb-4" style="width: 18rem;">
         <img src="{{ product.link }}" class="card-img" alt="Imagem ilustrativa do Produto">
         <div class="card-body">
-            <h5 class="card-title">{{ product.name }}</h5>
+            <h5 class="product-name">{{ product.name }}</h5>
             <h5 class="card-title">R${{ product.value }}</h5>
             {% if not product.disponivel %}
                 (Produto Indisponível)
@@ -11,7 +11,7 @@
                 <form method="POST" action="{% url 'adicionar-aos-favoritos' product.id %}">
                     <br>
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-success">Favoritar</button>
+                    <button type="submit" class="btn btn-success" name="botao_favoritar">Favoritar</button>
                 </form>
             {% endif %}
         </div>
