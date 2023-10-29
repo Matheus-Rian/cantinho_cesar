@@ -73,19 +73,30 @@ https://drive.google.com/file/d/1l-PggL4lX97P0CENTFJMVdzc-QCnXRch/view?usp=shari
 
 ## Entrega 03
 
-**Lo-fi:**
+**Lo-fi atualizado:**
 
-**Diagrama de atividades:**
+https://www.figma.com/file/cZh0hUIUmtqFVyaUKbsbk9/CANTINHO-CESAR?type=design&node-id=0%3A1&mode=design&t=Pt1c0JUGYfwzTsPZ-1
+
+https://drive.google.com/file/d/1eyjKy4HhVETHTGU6RhWGZ-_cFU_5Ia3p/view?usp=sharing
+
+**Diagrama de atividades atualizado:**
 
 https://drive.google.com/file/d/1SQ0MdjNiM5fpcoFjU7Zw37nUbssNIpR2/view?usp=sharing
 
 **Deployment**
+
+**Issue/Bug tracker**
+
+![image](https://github.com/mateusioliveira/cantinho_cesar/assets/98843736/f041e4bb-6cda-41a7-88e5-3a81fbabeae4)
+
 
 **CI/CD**
 
 **Testes de sistema automatizados**
 
 **Atualizção - programção em pares**
+
+https://docs.google.com/document/d/1Iy46XEt1GkSDpi4vgnVepXKb0E6H7CNj_UAbXbauQMM/edit?usp=sharing
 
 **Quadro no Jira**
 
