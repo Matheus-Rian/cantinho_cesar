@@ -87,17 +87,18 @@ https://drive.google.com/file/d/1SQ0MdjNiM5fpcoFjU7Zw37nUbssNIpR2/view?usp=shari
 
 **Deployment**
 
+https://cantinho-cesar-2.azurewebsites.net/
+
 **Issue/Bug tracker**
 
-![image](https://github.com/mateusioliveira/cantinho_cesar/assets/101649965/4456ae36-c545-4e87-bfd5-76ceb0e3111f)
+![image](https://github.com/mateusioliveira/cantinho_cesar/assets/98843736/65d5ddf8-4f64-49ef-93d9-3cc038a97be7)
 
 
+**CI/CD - screencast**
 
-**CI/CD**
+**Teste Automatizado Selenium - screencast**
 
-**Testes de sistema automatizados**
-
-**Atualizção - programção em pares**
+**Atualização - programação em pares**
 
 https://docs.google.com/document/d/1Iy46XEt1GkSDpi4vgnVepXKb0E6H7CNj_UAbXbauQMM/edit?usp=sharing
 
