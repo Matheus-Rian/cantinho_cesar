@@ -33,7 +33,6 @@ jobs:
     needs: build
     environment:
       name: 'Production'
-      url: ${{https://cantinho-cesar-2.azurewebsites.net}}
 
     steps:
       - name: Download artifact from build
@@ -49,5 +48,6 @@ jobs:
           app-name: 'Exquisite-app'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZURE_CREDENTIALS }}
+          environment-url: ${{ secrets.AZURE_CREDENTIALS }}
         
       
