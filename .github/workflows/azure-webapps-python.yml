@@ -38,7 +38,7 @@ jobs:
 
       - name: Run  server e Tests
         run: |
-          python manage.py runserver &
+          python project_cantinho/manage.py runserver &
                   sleep 5
           python project_cantinho/manage.py test app_cantinho
 
