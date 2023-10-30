@@ -184,7 +184,8 @@ def pagamento(request):
                 carrinho.products.clear()
                 carrinho.total = 0.00
                 carrinho.save()
-                return HttpResponse(f"Seu código PIX para pagamento: {pedido.codigo_pix}")
+                return render(request, 'codigo/codigo.html', {'codigo_pix': pedido.codigo_pix})
+
         
         elif metodo_pagamento == "pagar_retirada":
             user = request.user
@@ -197,7 +198,8 @@ def pagamento(request):
                 pedido.total = total
                 pedido.status_pagamento = "pending"
                 pedido.save()
-                return HttpResponse("Seu pedido foi registrado. O pagamento será efetuado na retirada.")
+                return render(request, 'retirada/retirada.html')
+                
 
     
     return render(request, 'pagamento/pagamento.html')

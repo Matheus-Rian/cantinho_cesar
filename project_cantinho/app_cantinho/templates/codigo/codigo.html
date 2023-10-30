@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="{% static 'codigo.css' %}">
+    <title>Código PIX de Pagamento</title>
+</head>
+
+<body>
+    <a href="{% url 'menu' %}">
+        <img class="img-seta" src="{% static 'images/seta.png' %}" alt="seta">
+    </a>
+    <main class="main-container">
+
+        <div class="container-inputs">
+            <h1>Seu código PIX para pagamento:</h1>
+            <p class="codigo">{{ codigo_pix }}</p>
+        </div>
+    </main>
+</body>
+
+</html>

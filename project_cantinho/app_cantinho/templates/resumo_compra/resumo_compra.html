@@ -17,12 +17,12 @@
 
             <h2>Produtos Comprados:</h2>
             <ul>
-                {% for produto in produtos %}
+                {% for produtos in produto %}
                 <li>{{ produto.name }} - R$ {{ produto.value }}</li>
                 {% endfor %}
             </ul>
 
-            <h2>Total: R$ {{ total }}</h2>
+            <h4 class="total">Total: R$ {{ total }}</h4>
 
             <h3>Horário de Retirada: {{ hora_retirada }}</h3>
 
