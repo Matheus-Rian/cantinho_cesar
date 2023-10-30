@@ -48,6 +48,6 @@ jobs:
       with:
         app-name: 'Exquisite-app'
         slot-name: 'Production'
-        publish-profile: ${{ secrets.PUBLISH_PROFILE }}
+        publish-profile: ${{ secrets.AZURE_CREDENTIALS }}
         
       
