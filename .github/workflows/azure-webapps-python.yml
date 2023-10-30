@@ -35,7 +35,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          python project_cantinho/manage.py app_cantinho.tests
+          python project_cantinho/manage.py test app_cantinho
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v3
