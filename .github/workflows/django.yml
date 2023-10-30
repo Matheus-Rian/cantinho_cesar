@@ -38,8 +38,8 @@ jobs:
       - name: Download artifact from build
         uses: actions/download-artifact@v2
         with:
-          name: project_cantinho
-          path: .
+          name: app_cantinho
+          path: project_cantinho\app_cantinho
   
       - name: 'Deploy to azure'
         uses: azure/webapps-deploy@v2
