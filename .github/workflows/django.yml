@@ -35,11 +35,6 @@ jobs:
       name: 'Production'
 
     steps:
-      - name: Download artifact from build
-        uses: actions/download-artifact@v2
-        with:
-          name: app_cantinho
-          path: project_cantinho\app_cantinho
   
       - name: 'Deploy to azure'
         uses: azure/webapps-deploy@v2
