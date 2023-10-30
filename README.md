@@ -89,7 +89,8 @@ https://drive.google.com/file/d/1SQ0MdjNiM5fpcoFjU7Zw37nUbssNIpR2/view?usp=shari
 
 **Issue/Bug tracker**
 
-![image](https://github.com/mateusioliveira/cantinho_cesar/assets/98843736/f041e4bb-6cda-41a7-88e5-3a81fbabeae4)
+![image](https://github.com/mateusioliveira/cantinho_cesar/assets/101649965/4456ae36-c545-4e87-bfd5-76ceb0e3111f)
+
 
 
 **CI/CD**
