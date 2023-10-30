@@ -6,11 +6,11 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 class Historia1(LiveServerTestCase):
     def setUp(self):
-        self.driver = webdriver.Chrome()
         self.options = webdriver.ChromeOptions()
         self.options.add_argument("--headless")
         self.options.add_argument("--no-sandbox")
         self.options.add_argument("--disable-dev-shm-usage")
+        self.driver = webdriver.Chrome(options=self.options)
 
 # Create your tests here.
     def test_01(self):
