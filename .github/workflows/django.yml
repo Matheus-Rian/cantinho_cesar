@@ -35,10 +35,12 @@ jobs:
       name: 'Production'
 
     steps:
-      - name: Azure Login
-        uses: azure/login@v2
+      - name: Download artifact from build
+        uses: actions/download-artifact@v2
         with:
-          credentials: ${{ secrets.AZURE_CREDENTIALS }}
+          name: app_cantinho
+          path: project_cantinho\app_cantinho
+
       - name: 'Deploy to azure'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
@@ -47,3 +49,8 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZURE_CREDENTIALS }}
           environment-url: ${{ secrets.AZURE_CREDENTIALS }}
+
+      env:
+        AZURE_TENANT_ID: ${{ secrets.AZURE_CREDENTIALS }}
+        AZURE_CLIENT_ID: ${{ secrets.AZURE_CREDENTIALS }}
+        AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CREDENTIALS }}
