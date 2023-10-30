@@ -35,7 +35,10 @@ jobs:
       name: 'Production'
 
     steps:
-  
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          credentials: ${{ secrets.AZURE_CREDENTIALS }}
       - name: 'Deploy to azure'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
