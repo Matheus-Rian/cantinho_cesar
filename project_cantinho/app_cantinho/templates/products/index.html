@@ -5,7 +5,7 @@
             <h5 class="product-name">{{ product.name }}</h5>
             <h5 class="card-title">R${{ product.value }}</h5>
             {% if not product.disponivel %}
-                (Produto Indisponível)
+                <h6 name="produto-indisponivel">(Produto Indisponível) </h6>
             {% else %}
                 <a href="{% url 'carrinho' product.id %}" class="btn btn-primary add-to-cart">Adicionar ao carrinho</a>
                 <form method="POST" action="{% url 'adicionar-aos-favoritos' product.id %}">

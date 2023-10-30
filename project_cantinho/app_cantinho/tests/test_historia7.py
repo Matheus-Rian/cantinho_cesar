@@ -58,7 +58,12 @@ class Historia7(LiveServerTestCase):
         for botao in botoes_adicionar_favorito:
             botao.click()
             time.sleep(8)
-        #acessando favoritos
+            #acessando favoritos
             favoritos = self.driver.find_element(By.NAME, "meus_favoritos")
             favoritos.click()
             time.sleep(5)
+            try:
+                favoritos_sucesso = self.driver.find_element(By.CLASS_NAME, 'favorito-info')
+                assert True, favoritos_sucesso
+            except:
+                assert False

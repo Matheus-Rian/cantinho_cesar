@@ -65,3 +65,8 @@ class Historia3(LiveServerTestCase):
             botao_salvar = self.driver.find_element(By.NAME, 'salvar_horario')
             botao_salvar.click()
             time.sleep(2)
+            try:
+                sucesso = self.driver.find_element(By.CLASS_NAME, 'sucess')
+                assert True, sucesso
+            except:
+                assert False

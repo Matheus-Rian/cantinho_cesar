@@ -28,6 +28,11 @@ class Historia2(LiveServerTestCase):
         for botao in lugar:
             botao.click()
             time.sleep(5)
-        selecionar = self.driver.find_element(By.CLASS_NAME, "custom-button")
-        selecionar.click()
-        time.sleep(2)
+            selecionar = self.driver.find_element(By.CLASS_NAME, "custom-button")
+            selecionar.click()
+            time.sleep(2)
+            try:
+                disponivel = self.driver.find_element(By.NAME, 'produto-indisponivel')
+                assert True, disponivel
+            except:
+                assert False
