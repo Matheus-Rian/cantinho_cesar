@@ -47,5 +47,3 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZURE_CREDENTIALS }}
           environment-url: ${{ secrets.AZURE_CREDENTIALS }}
-        
-      
