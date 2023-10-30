@@ -14,18 +14,18 @@
 
             <ul class=".lista-sem-marcador " >
                 {% for product in products %}
-                <li>{{ product.name }} - R$ {{ product.value }}</li>
+                <li name="nome_produto_carrinho">{{ product.name }} - R$ {{ product.value }}</li>
                 {% endfor %}
             </ul>
 
             <h4 class="total">Total: R$ {{ total }}</h4>
-            
+
             <form class="horario-retirada" method="post" action="{% url 'salvar_horario' %}">
                 {% csrf_token %}
                 <label for="hora_retirada">Horário de Retirada</label>
                 <br>
                 <div class="alinhar-horario">
-                <input type="time" id="hora_retirada" name="hora_retirada" required>
+                <input type="time" id="hora_retirada" name="hora_retirada2" class="retirada" required>
                 <input class="salvar" type="submit" name="salvar_horario" value="Salvar">
             </div>
                 {% if messages %}
@@ -39,7 +39,7 @@
                     <button class="continuar_comprando" type="button">Continuar Comprando</button>
                 </a>
                 <a href="{% url 'pagamento' %}">
-                    <button class="continuar_comprando" type="button">Realizar Pagamento</button>
+                    <button class="pagamento" type="button">Realizar Pagamento</button>
                 </a>
             </form>
         </div>
