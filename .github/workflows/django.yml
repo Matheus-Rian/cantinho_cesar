@@ -35,19 +35,19 @@ jobs:
       name: 'Production'
       url: ${{https://cantinho-cesar-2.azurewebsites.net}}
 
-  steps:
-    - name: Download artifact from build
-      uses: actions/download-artifact@v2
-      with:
-        name: python-app
-        path: .
-
-    - name: Deploy to azure
-      uses: azure/webapps-deploy@v2
-      id: deploy-to-webapp
-      with:
-        app-name: 'Exquisite-app'
-        slot-name: 'Production'
-        publish-profile: ${{ secrets.AZURE_CREDENTIALS }}
+    steps:
+      - name: Download artifact from build
+        uses: actions/download-artifact@v2
+        with:
+          name: python-app
+          path: .
+  
+      - name: 'Deploy to azure'
+        uses: azure/webapps-deploy@v2
+        id: deploy-to-webapp
+        with:
+          app-name: 'Exquisite-app'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZURE_CREDENTIALS }}
         
       
