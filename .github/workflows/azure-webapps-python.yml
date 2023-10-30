@@ -33,6 +33,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r project_cantinho/requirements.txt
 
+      - name: Install Selenium
+        run: pip install selenium
+
       - name: Run Tests
         run: |
           python project_cantinho/manage.py test app_cantinho
