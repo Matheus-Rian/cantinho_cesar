@@ -36,9 +36,11 @@ jobs:
       - name: Install Selenium
         run: pip install selenium
 
-      - name: Run Tests
+      - name: Run  server e Tests
         run: |
-          python project_cantinho/manage.py test app_cantinho
+          python manage.py runserver &
+                  sleep 5
+          python project_cantinho/manage.py app_cantinho.tests
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v3
