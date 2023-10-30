@@ -1,44 +1,3 @@
-# from django.test import LiveServerTestCase
-# from selenium import webdriver
-# from selenium.webdriver.chrome.service import Service
-# from selenium.webdriver.common.by import By
-# from time import sleep
-
-# chrome_options = webdriver.ChromeOptions()
-# self.driver = webdriver.Chrome(options=chrome_options)
-
-# class teste1(LiveServerTestCase):
-#         self.driver.get('http://127.0.0.1:8000/')
-#         email = self.driver.find_element(By.NAME, "email")
-#         senha = self.driver.find_element(By.NAME, "senha")
-#         email.send_keys("teste25@teste.com")
-#         senha.send_keys("123")
-#         entrar = self.driver.find_element(By.XPATH, "//button[@value='Entrar']")
-#         sleep(2)
-#         entrar.click()
-#         sleep(2)
-#         botoes_adicionar = self.driver.find_elements(By.CLASS_NAME, "add-to-cart")
-#         sleep(2)
-#         for botao in botoes_adicionar:
-#             botao.click()
-#             sleep(2)
-#         horario = self.driver.find_element(By.ID, 'hora_retirada')
-#         horario.send_keys('11:00')
-#         botao_salvar = self.driver.find_element(By.NAME, 'salvar_horario')
-#         botao_salvar.click()
-#         sleep(4)
-#         #finalizando compra
-#         botao_comprar = self.driver.find_element(By.CLASS_NAME, 'pagamento')
-#         botao_comprar.click()
-#         sleep(2)
-#         #escolhendo metodo
-#         pagamento = self.driver.find_element(By.ID, 'pix')
-#         pagamento.click()
-#         pagar = self.driver.find_element(By.NAME, 'botao_pagar')
-#         pagar.click()
-#         sleep(2)
-#         self.driver.quit()
-
 from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -48,6 +7,10 @@ import time
 class Historia3(LiveServerTestCase):
     def setUp(self):
         self.driver = webdriver.Chrome()
+        self.options = webdriver.ChromeOptions()
+        self.options.add_argument("--headless")
+        self.options.add_argument("--no-sandbox")
+        self.options.add_argument("--disable-dev-shm-usage")
 
 # Create your tests here.
     def test_01(self):

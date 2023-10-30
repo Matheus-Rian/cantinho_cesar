@@ -7,6 +7,10 @@ import time
 class Historia1(LiveServerTestCase):
     def setUp(self):
         self.driver = webdriver.Chrome()
+        self.options = webdriver.ChromeOptions()
+        self.options.add_argument("--headless")
+        self.options.add_argument("--no-sandbox")
+        self.options.add_argument("--disable-dev-shm-usage")
 
 # Create your tests here.
     def test_01(self):
