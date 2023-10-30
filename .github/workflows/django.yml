@@ -26,7 +26,7 @@ jobs:
         pip install -r project_cantinho/requirements.txt
     - name: Run Tests
       run: |
-        python project_cantinho/app_cantinho/manage.py tests
+        python project_cantinho/manage.py test
 
   deploy:
     runs-on: ubuntu-latest
