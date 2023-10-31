@@ -98,7 +98,7 @@ https://cantinho-cesar-2.azurewebsites.net/
 
 **CI/CD - screencast**
 
-https://drive.google.com/file/d/1zbGwAK8CXxSaFMEDiArWJXwtiGpqkRb4/view?usp=sharing
+https://drive.google.com/file/d/1j4NRaB__QseolRSddOK880kGDGYDG5ek/view?usp=sharing
 
 **Teste Automatizado Selenium - screencast**
 
