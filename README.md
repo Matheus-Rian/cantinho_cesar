@@ -91,7 +91,10 @@ https://cantinho-cesar-2.azurewebsites.net/
 
 **Issue/Bug tracker**
 
-![image](https://github.com/mateusioliveira/cantinho_cesar/assets/98843736/65d5ddf8-4f64-49ef-93d9-3cc038a97be7)
+![image](https://github.com/mateusioliveira/cantinho_cesar/assets/98843736/2bab78e4-9fb5-4532-a73e-df8b60896435)
+
+![image](https://github.com/mateusioliveira/cantinho_cesar/assets/98843736/2cd06c61-26e7-4877-878c-e89a10dff45c)
+
 
 
 **CI/CD - screencast**
