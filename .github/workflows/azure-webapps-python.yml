@@ -40,7 +40,7 @@ jobs:
         run: |
           python project_cantinho/manage.py runserver &
                   sleep 5
-          python project_cantinho/manage.py test app_cantinho
+          python project_cantinho/manage.py test
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v3
