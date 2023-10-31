@@ -96,8 +96,9 @@ https://cantinho-cesar-2.azurewebsites.net/
 ![image](https://github.com/mateusioliveira/cantinho_cesar/assets/98843736/2cd06c61-26e7-4877-878c-e89a10dff45c)
 
 
-
 **CI/CD - screencast**
+
+https://drive.google.com/file/d/1zbGwAK8CXxSaFMEDiArWJXwtiGpqkRb4/view?usp=sharing
 
 **Teste Automatizado Selenium - screencast**
 
