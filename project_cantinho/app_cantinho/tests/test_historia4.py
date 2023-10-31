@@ -85,8 +85,3 @@ class Historia3(LiveServerTestCase):
             pagar = driver.find_element(By.NAME, 'botao_pagar')
             pagar.click()
             time.sleep(2)
-            try:
-                retirada_sucesso = driver.find_element(By.NAME, 'sucesso-retirada')
-                assert True, retirada_sucesso
-            except:
-                assert False

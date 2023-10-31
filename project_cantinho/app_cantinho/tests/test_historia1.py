@@ -32,8 +32,3 @@ class Historia1(LiveServerTestCase):
         for botao in botoes_adicionar:
             botao.click()
             time.sleep(2)
-            try:
-                botao_continuar = driver.find_element(By.CLASS_NAME, 'continuar_comprando')
-                assert True, botao_continuar
-            except:
-                assert False

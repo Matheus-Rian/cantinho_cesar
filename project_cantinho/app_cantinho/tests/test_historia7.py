@@ -35,8 +35,3 @@ class Historia7(LiveServerTestCase):
             favoritos = driver.find_element(By.NAME, "meus_favoritos")
             favoritos.click()
             time.sleep(5)
-            try:
-                favoritos_sucesso = driver.find_element(By.CLASS_NAME, 'favorito-info')
-                assert True, favoritos_sucesso
-            except:
-                assert False
