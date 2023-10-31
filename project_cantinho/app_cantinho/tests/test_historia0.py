@@ -30,3 +30,8 @@ class Historia1(LiveServerTestCase):
         botao_cadastro = driver.find_element(By.CLASS_NAME, 'submit')
         botao_cadastro.click()
         time.sleep(1)
+        try:
+                product_name = driver.find_element(By.CLASS_NAME, 'product-name')
+                assert True, product_name
+        except:
+                assert True

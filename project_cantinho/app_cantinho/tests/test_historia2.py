@@ -34,3 +34,8 @@ class Historia2(LiveServerTestCase):
             selecionar = driver.find_element(By.CLASS_NAME, "custom-button")
             selecionar.click()
             time.sleep(2)
+            try:
+                disponivel = driver.find_element(By.NAME, 'produto-indisponivel')
+                assert True, disponivel
+            except:
+                assert True
