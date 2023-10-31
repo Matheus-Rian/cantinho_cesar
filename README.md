@@ -98,6 +98,8 @@ https://cantinho-cesar-2.azurewebsites.net/
 
 **Teste Automatizado Selenium - screencast**
 
+https://drive.google.com/file/d/1ilSVPAQeNdFdUR03YkJX_kEgoiItWmAv/view?usp=drivesdk
+
 **Atualização - programação em pares**
 
 https://docs.google.com/document/d/1Iy46XEt1GkSDpi4vgnVepXKb0E6H7CNj_UAbXbauQMM/edit?usp=sharing
