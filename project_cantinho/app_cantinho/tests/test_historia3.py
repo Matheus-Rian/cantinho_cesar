@@ -7,9 +7,10 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 options = webdriver.ChromeOptions()
-# options.add_argument("--headless")
+options.add_argument("--headless")
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
+options.add_argument("--log-path=/path/to/chromedriver.log")
 driver = webdriver.Chrome(options=options)
 
 class Historia3(LiveServerTestCase):
