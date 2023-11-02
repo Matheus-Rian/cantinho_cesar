@@ -10,7 +10,7 @@ options.add_argument("--headless")
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 driver = webdriver.Chrome(options=options)
-class Historia1(LiveServerTestCase):
+class Historia0(LiveServerTestCase):
 
 # Create your tests here.
     def test_01(self):
