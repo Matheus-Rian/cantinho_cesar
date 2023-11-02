@@ -2,12 +2,12 @@ from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
 options = webdriver.ChromeOptions()
-options.add_argument("--headless")
+# options.add_argument("--headless")
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 driver = webdriver.Chrome(options=options)
@@ -43,7 +43,12 @@ class Historia3(LiveServerTestCase):
                 botao_salvar.click()
                 time.sleep(2)
 
-                sucesso = driver.find_element(By.CLASS_NAME, 'success')
-                self.assertIsNotNone(sucesso, "Element 'sucess' not found")
+                while True:
+                    try:
+                        sucesso = driver.find_element(By.CLASS_NAME, 'success')
+                        self.assertIsNotNone(sucesso, "Element 'success' not found")
+                        break
+                    except StaleElementReferenceException:
+                        continue
             except:
                 break
