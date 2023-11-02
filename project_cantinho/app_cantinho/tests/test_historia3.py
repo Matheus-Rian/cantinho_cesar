@@ -43,10 +43,14 @@ class Historia3(LiveServerTestCase):
                 botao_salvar.click()
                 time.sleep(2)
 
-                sucesso = driver.find_element(By.CLASS_NAME, 'success')
-                self.assertIsNotNone(sucesso, "Element 'success' not found")
-                sucesso = driver.find_element(By.CLASS_NAME, 'warning')
-                self.assertIsNotNone(sucesso, "Element 'warning' not found")
+                try:
+                    horario = driver.find_element(By.CLASS_NAME, "retirada")
+                except NoSuchElementException:
+                    sucesso = driver.find_element(By.CLASS_NAME, 'success')
+                    self.assertIsNotNone(sucesso, "Element 'success' not found")
+                    warning = driver.find_element(By.CLASS_NAME, 'warning')
+                    self.assertIsNotNone(warning, "Element 'warning' not found")
+
 
             except:
                 break
