@@ -100,6 +100,10 @@ https://cantinho-cesar-2.azurewebsites.net/
 
 https://drive.google.com/file/d/1j4NRaB__QseolRSddOK880kGDGYDG5ek/view?usp=sharing
 
+**Screencast Local**
+
+https://drive.google.com/file/d/1LZiBXipDt1zou4UokJoQ0HTh-HktmrVg/view?usp=sharing
+
 **Teste Automatizado Selenium - screencast**
 
 https://drive.google.com/file/d/1ilSVPAQeNdFdUR03YkJX_kEgoiItWmAv/view?usp=drivesdk
