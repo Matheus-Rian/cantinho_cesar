@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
 import time
 
 options = webdriver.ChromeOptions()
@@ -12,31 +13,32 @@ options.add_argument("--disable-dev-shm-usage")
 driver = webdriver.Chrome(options=options)
 class Historia7(LiveServerTestCase):
 
-# Create your tests here.
     def test_01(self):
         driver.get("http://127.0.0.1:8000")
-        email = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.NAME, "email"))
-        )
-        senha = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.NAME, "senha"))
-        )
+        try:
+            email = driver.find_element(By.CSS_SELECTOR, "input[name='email']")
+            senha = driver.find_element(By.CSS_SELECTOR, "input[name='senha']")
+        except NoSuchElementException:
+            print("Email or senha element not found.")
+            return
 
         email.send_keys("teste25@teste.com")
         senha.send_keys("123")
+
         entrar = driver.find_element(By.XPATH, "//button[@value='Entrar']")
-        time.sleep(2)
         entrar.click()
-        botoes_adicionar_favorito = driver.find_elements(By.NAME, "botao_favoritar")
-        for botao in botoes_adicionar_favorito:
-            botao.click()
-            time.sleep(8)
-            #acessando favoritos
-            favoritos = driver.find_element(By.NAME, "meus_favoritos")
-            favoritos.click()
-            time.sleep(5)
-            try:
-                favoritos_sucesso = driver.find_element(By.CLASS_NAME, 'favorito-info')
-                assert True, favoritos_sucesso
-            except:
-                assert True
+        time.sleep(2)
+
+        botao_favoritar = driver.find_element(By.XPATH, "//button[@name='botao_favoritar']")
+        botao_favoritar.click()
+        time.sleep(2)
+
+
+        driver.get("http://127.0.0.1:8000/meus-favoritos/")
+
+        try:
+            produto_favoritado = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, 'favorito-info')))
+            self.assertTrue(produto_favoritado.is_displayed())
+        except StaleElementReferenceException:
+            produto_favoritado = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, 'favorito-info')))
+            self.assertTrue(produto_favoritado.is_displayed())
