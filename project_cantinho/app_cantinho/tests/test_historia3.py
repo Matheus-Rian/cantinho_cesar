@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 options = webdriver.ChromeOptions()
-options.add_argument("--headless")
+# options.add_argument("--headless")
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 driver = webdriver.Chrome(options=options)
@@ -43,12 +43,10 @@ class Historia3(LiveServerTestCase):
                 botao_salvar.click()
                 time.sleep(2)
 
-                while True:
-                    try:
-                        sucesso = driver.find_element(By.CLASS_NAME, 'success')
-                        self.assertIsNotNone(sucesso, "Element 'success' not found")
-                        break
-                    except StaleElementReferenceException:
-                        continue
+                sucesso = driver.find_element(By.CLASS_NAME, 'success')
+                self.assertIsNotNone(sucesso, "Element 'success' not found")
+                sucesso = driver.find_element(By.CLASS_NAME, 'warning')
+                self.assertIsNotNone(sucesso, "Element 'warning' not found")
+
             except:
                 break
