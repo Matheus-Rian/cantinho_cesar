@@ -15,6 +15,16 @@ class Vendinha(models.Model):
   name = models.CharField(max_length=200)
   products = models.ManyToManyField(Product)
 
+class Review(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
+    vendinha = models.ForeignKey(Vendinha, on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.PositiveIntegerField(default=5)
+    comment = models.TextField(blank=True, null=True) 
+    
+    def __str__(self):
+        return f"Review for {self.product.name} at {self.vendinha.name} by {self.user.username}"
+
 
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null = True, blank = True)
