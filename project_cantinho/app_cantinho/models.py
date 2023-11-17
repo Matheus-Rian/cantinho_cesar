@@ -19,7 +19,6 @@ class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
     vendinha = models.ForeignKey(Vendinha, on_delete=models.CASCADE, related_name='reviews')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    rating = models.PositiveIntegerField(default=5)
     comment = models.TextField(blank=True, null=True) 
     
     def __str__(self):

@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
-from .forms import OptionsVendinha
-from .models import VendinhaController, Product, Cart,UserProfile,Favoritar, Pedido
+from .forms import OptionsVendinha, ReviewForm
+from .models import VendinhaController, Product, Cart,UserProfile,Favoritar, Pedido, Review
 from django.views import View
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .utils import total_pedido, atualizar_estoque_produto
+from .utils import total_pedido, atualizar_estoque_produto, calcular_classificacao_media
 import random, string
 
 def get_products_by_vendinha(name):
@@ -227,3 +227,29 @@ def resumo_compra(request):
 
     return render(request, 'resumo_compra/resumo_compra.html', context)
 
+
+@login_required
+def avaliar_produto(request, produto_id):
+    try:
+        produto = Product.objects.get(id=produto_id)
+    except Product.DoesNotExist:
+        pass
+
+    pedidos_do_usuario = Pedido.objects.filter(user=request.user, products=produto)
+
+    if not pedidos_do_usuario:
+        pass
+
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            comment = form.cleaned_data["comment"]
+
+            review = Review(product=produto, user=request.user, comment=comment)
+            review.save()
+            return redirect("avaliar_produto")
+
+    else:
+        form = ReviewForm()
+
+    return render(request, 'comentarios/comentarios.html', {'form': form})

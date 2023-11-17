@@ -1,0 +1,30 @@
+
+<h2>Comentários dos Produtos:</h2>
+<ul>
+    {% for produto in produtos_pedido %}
+        <li>
+            <h3>{{ produto.name }}</h3>
+            <ul>
+                {% for comentario in produto.reviews.all %}
+                    <li>
+                        <strong>Usuário:</strong> {{ comentario.user.username }}
+                        <br>
+                        <strong>Comentário:</strong> {{ comentario.comment }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
+
+<div class="comment-section">
+    <h2>Deixe um Comentário</h2>
+    <form method="post" action="{% url 'avaliar_produto' pedido_id %}">
+        {% csrf_token %}
+        <input type="hidden" name="product" value="{{ product_id }}">
+        <label for="comment">Seu Comentário:</label>
+        <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
+        <br>
+        <input type="submit" value="Enviar Comentário" class="custom-button">
+    </form>
+</div>
