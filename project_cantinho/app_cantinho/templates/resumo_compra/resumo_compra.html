@@ -4,7 +4,7 @@
 <html>
 
 <head>
-    <title>Resumo da Compra</title>
+    <title>Histórico de Compras</title>
     <link rel="stylesheet" href="{% static 'resumo.css' %}">
 </head>
 
@@ -13,30 +13,35 @@
         <a href="{% url 'menu' %}">
             <img src="{% static 'images/seta.png' %}" alt="seta">
         </a>
-        <div class="container-inputs">
-            <h1 class="barra">Resumo da compra</h1>
+        <h1 class="barra">Histórico de Compras</h1>
 
+        {% for pedido_info in lista_pedidos %}
+        <div class="container-inputs">
             <h2>Produtos Comprados:</h2>
             <ul>
-                {% for produto in produtos %}
+                {% for produto in pedido_info.produtos %}
                     <li>{{ produto.name }} - R$ {{ produto.value }}</li>
+                        <a href="{% url 'avaliar_pedido' pedido_id=pedido_info.pedido.id produto_id=produto.id%}">Avaliar o produto</a>
                 {% endfor %}
             </ul>
 
-            <h4 class="total">Total: R$ {{ total }}</h4>
+
+            <h4 class="total">Total: R$ {{ pedido_info.total }}</h4>
 
             {% if hora_retirada %}
-                <h3>Horário de Retirada: {{ hora_retirada }}</h3>
+                <h3>Horário de Retirada: {{ pedido_info.hora_retirada }}</h3>
             {% else %}
                 <h3>Horário de Retirada: Não especificado</h3>
             {% endif %}
 
             {% if status_pagamento %}
-                <h3>Status de Pagamento: {{ status_pagamento }}</h3>
+                <h3>Status de Pagamento: {{ pedido_info.status_pagamento }}</h3>
             {% else %}
                 <h3>Status de Pagamento: Não encontrado</h3>
             {% endif %}
         </div>
+        {% endfor %}
+
     </main>
 </body>
 

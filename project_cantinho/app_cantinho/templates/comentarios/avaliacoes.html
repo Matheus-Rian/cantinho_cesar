@@ -1,0 +1,10 @@
+{% block content %}
+  <h1>Avaliações</h1>
+
+  {% for avaliacao in avaliacoes %}
+    <h2>{{ avaliacao.product.name }}</h2>
+    <p>Usuário: {{ avaliacao.user.username }}</p>
+    <p>Comentário: {{ avaliacao.comment }}</p>
+    <hr>
+  {% endfor %}
+{% endblock %}
