@@ -1,30 +1,36 @@
+<!-- seu_template.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliar Produto</title>
+    <!-- Adicione links para folhas de estilo (CSS) se necessário -->
+</head>
+<body>
 
-<h2>Comentários dos Produtos:</h2>
-<ul>
-    {% for produto in produtos_pedido %}
-        <li>
-            <h3>{{ produto.name }}</h3>
-            <ul>
-                {% for comentario in produto.reviews.all %}
-                    <li>
-                        <strong>Usuário:</strong> {{ comentario.user.username }}
-                        <br>
-                        <strong>Comentário:</strong> {{ comentario.comment }}
-                    </li>
-                {% endfor %}
-            </ul>
-        </li>
-    {% endfor %}
-</ul>
+<h2>Avaliar Produto</h2>
 
-<div class="comment-section">
-    <h2>Deixe um Comentário</h2>
-    <form method="post" action="{% url 'avaliar_produto' pedido_id %}">
-        {% csrf_token %}
-        <input type="hidden" name="product" value="{{ product_id }}">
-        <label for="comment">Seu Comentário:</label>
-        <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
-        <br>
-        <input type="submit" value="Enviar Comentário" class="custom-button">
-    </form>
-</div>
+<form method="post" action="{% url 'avaliar_produto' produto_id=produto.id pedido_id=pedido.id %}">
+    {% csrf_token %}
+    
+    <!-- Adicione campos necessários para a avaliação -->
+    <label for="avaliacao">Avaliação:</label>
+    <input type="number" name="avaliacao" id="avaliacao" min="1" max="5" required>
+
+    <label for="comentario">Comentário:</label>
+    <textarea name="comentario" id="comentario" rows="4" required></textarea>
+
+    <button type="submit">Enviar Avaliação</button>
+</form>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+</body>
+</html>

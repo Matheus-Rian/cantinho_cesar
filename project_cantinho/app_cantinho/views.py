@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
-from .forms import OptionsVendinha, ReviewForm
+from .forms import OptionsVendinha
 from .models import VendinhaController, Product, Cart,UserProfile,Favoritar, Pedido, Review
 from django.views import View
 from django.views.decorators.http import require_POST
@@ -8,8 +8,10 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .utils import total_pedido, atualizar_estoque_produto, calcular_classificacao_media
+from .utils import total_pedido, atualizar_estoque_produto
 import random, string
+from django.urls import reverse
+from django.db.models import Count
 
 def get_products_by_vendinha(name):
   vendinha = VendinhaController.get_vendinha_by_name(name=name)
@@ -204,52 +206,48 @@ def pagamento(request):
     
     return render(request, 'pagamento/pagamento.html')
 
+
 def resumo_compra(request):
     user = request.user
     carrinho = Cart.objects.get(user=user)
     produtos = carrinho.products.all()
     total = sum(produto.value for produto in produtos)
 
+    pedidos = Pedido.objects.filter(user=user).order_by('-id')
 
-    pedido = Pedido.objects.filter(user=user).order_by('-id').first()
-
-    if pedido:
+    lista_pedidos = []
+    for pedido in pedidos:
         status_pagamento = pedido.status_pagamento
-    else:
-        status_pagamento = "Não encontrado" 
+        hora_retirada = pedido.hora_retirada
+        lista_pedidos.append({
+            'pedido': pedido,
+            'produtos': pedido.products.all(),
+            'total': sum(produto.value for produto in pedido.products.all()),
+            'hora_retirada': hora_retirada,
+            'status_pagamento': status_pagamento,
+        })
 
     context = {
-        'produtos': produtos,
-        'total': total,
-        'hora_retirada': pedido.hora_retirada,
-        'status_pagamento': status_pagamento,
+        'lista_pedidos': lista_pedidos,
     }
 
     return render(request, 'resumo_compra/resumo_compra.html', context)
 
-
 @login_required
-def avaliar_produto(request, produto_id):
-    try:
-        produto = Product.objects.get(id=produto_id)
-    except Product.DoesNotExist:
-        pass
+def avaliar_pedido(request, pedido_id, produto_id):
+    pedido = get_object_or_404(Pedido, pk=pedido_id)
+    produtos = pedido.products.all()
+    if request.method == 'POST':
+        comment = request.POST.get('comment')
+        produto_id = request.POST.get('produto')
+        if comment and pedido_id:
+            produto = get_object_or_404(Product, pk=produto_id) 
+            Review.objects.create(product=produto, user=request.user, comment=comment, pedido=pedido)
+            return HttpResponseRedirect(reverse('avaliacoes'))
+    
+    return render(request, 'comentarios/avaliar_pedido.html', {'pedido': pedido, 'produtos': produtos})
 
-    pedidos_do_usuario = Pedido.objects.filter(user=request.user, products=produto)
 
-    if not pedidos_do_usuario:
-        pass
-
-    if request.method == "POST":
-        form = ReviewForm(request.POST)
-        if form.is_valid():
-            comment = form.cleaned_data["comment"]
-
-            review = Review(product=produto, user=request.user, comment=comment)
-            review.save()
-            return redirect("avaliar_produto")
-
-    else:
-        form = ReviewForm()
-
-    return render(request, 'comentarios/comentarios.html', {'form': form})
+def avaliacoes(request):
+    avaliacoes = Review.objects.all()
+    return render(request, 'comentarios/avaliacoes.html', {'avaliacoes': avaliacoes})
