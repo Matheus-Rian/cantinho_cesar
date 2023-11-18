@@ -44,7 +44,7 @@ class VendinhaController():
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
+    saldo = models.DecimalField(default=0.00, max_digits=100, decimal_places=2)
     def __str__(self):
         return self.user.username
   
@@ -61,3 +61,7 @@ class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.TextField(blank=True, null=True)
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, related_name='reviews', default=None) 
+
+    
+
+

@@ -9,7 +9,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .utils import total_pedido, atualizar_estoque_produto
+from decimal import Decimal
 import random, string
+from django.contrib import messages
 from django.urls import reverse
 from django.db.models import Count
 
@@ -124,9 +126,7 @@ def salvar_horario(request):
         if not pedidos_em_andamento.exists():
             pedido = Pedido.objects.create(user=user, status_pagamento="pending", hora_retirada=hora_retirada)
             messages.success(request, "Novo pedido criado com horário.")
-        else:
-            messages.warning(request, "Já existe um pedido em andamento ou pago. Você não pode criar um novo.")
-
+        
         return redirect("/carrinho/")
 
     return render(request, "carrinho.html")
@@ -161,13 +161,15 @@ def remover_dos_favoritos(request, product_id):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+
 @login_required
 def pagamento(request):
-    
+    context = {}
     if request.method == "POST":
         metodo_pagamento = request.POST.get("metodo_pagamento")
 
         if metodo_pagamento == "pix":
+            # Lógica para processar pagamento com PIX
             user = request.user
             carrinho = Cart.objects.get(user=user)
             pedido = Pedido.objects.filter(user=user, status_pagamento="pending").first()
@@ -188,7 +190,6 @@ def pagamento(request):
                 carrinho.save()
                 return render(request, 'codigo/codigo.html', {'codigo_pix': pedido.codigo_pix})
 
-        
         elif metodo_pagamento == "pagar_retirada":
             user = request.user
             pedido = Pedido.objects.filter(user=user, status_pagamento="pending").first()
@@ -201,10 +202,37 @@ def pagamento(request):
                 pedido.status_pagamento = "pending"
                 pedido.save()
                 return render(request, 'retirada/retirada.html')
-                
 
-    
+        elif metodo_pagamento == "saldo":
+            user = request.user
+            carrinho = Cart.objects.get(user=user)
+            pedido = Pedido.objects.filter(user=user, status_pagamento="pending").first()
+
+            if pedido:
+                pedido.cart = carrinho
+                pedido.products.set(carrinho.products.all())
+                total = total_pedido(pedido)
+                pedido.total = total
+                pedido.save()
+
+                if user.userprofile.saldo >= pedido.total:
+                   
+                    user.userprofile.saldo -= pedido.total
+                    user.userprofile.save()
+
+                    pedido.status_pagamento = "paid"
+                    pedido.save()
+
+                    messages.success(request,'Pagamento realizado com sucesso!')
+                    return redirect('resumo_compra')
+                else:
+                    messages.error(request, 'Saldo insuficiente para realizar o pagamento com saldo.')
+                    # Adiciona uma mensagem de erro e redireciona para a página de pagamento
+                    return redirect('pagamento')
     return render(request, 'pagamento/pagamento.html')
+
+
+
 
 
 def resumo_compra(request):
@@ -233,6 +261,36 @@ def resumo_compra(request):
 
     return render(request, 'resumo_compra/resumo_compra.html', context)
 
+@login_required
+def remover_carrinho(request, product_id):
+    user = request.user
+    product = get_object_or_404(Product, pk=product_id)
+    
+    try:
+        carrinho = Cart.objects.get(user=user)        
+        carrinho.products.remove(product)
+    except Cart.DoesNotExist:
+        pass
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+@login_required
+def adicionar_saldo(request):
+    user_profile = request.user.userprofile
+
+    if request.method == 'POST':
+        valor_adicional = Decimal(request.POST.get('valor_adicional', 0.0))
+
+        if valor_adicional > 0:
+            user_profile.saldo += valor_adicional
+            user_profile.save()
+
+            messages.success(request, f'Saldo de R${valor_adicional:.2f} adicionado com sucesso!')
+
+        else:
+            messages.error(request, 'O valor a ser adicionado deve ser maior que zero.')
+
+    return render(request, 'adicionar_saldo/adicionar_saldo.html', {'user_profile': user_profile})
 @login_required
 def avaliar_pedido(request, pedido_id, produto_id):
     pedido = get_object_or_404(Pedido, pk=pedido_id)

@@ -1,3 +1,4 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -27,9 +28,17 @@
 
             <h4 class="total">Total: R$ {{ pedido_info.total }}</h4>
 
-            <h3>Horário de Retirada: {{ pedido_info.hora_retirada }}</h3>
+            {% if hora_retirada %}
+                <h3>Horário de Retirada: {{ pedido_info.hora_retirada }}</h3>
+            {% else %}
+                <h3>Horário de Retirada: Não especificado</h3>
+            {% endif %}
 
-            <h3>Status de Pagamento: {{ pedido_info.status_pagamento }}</h3>
+            {% if status_pagamento %}
+                <h3>Status de Pagamento: {{ pedido_info.status_pagamento }}</h3>
+            {% else %}
+                <h3>Status de Pagamento: Não encontrado</h3>
+            {% endif %}
         </div>
         {% endfor %}
 

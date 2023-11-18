@@ -12,9 +12,12 @@
         <div class="container-inputs">
             <h1 class="barra">Seu Carrinho</h1>
 
-            <ul class=".lista-sem-marcador " >
+            <ul class=".lista-sem-marcador">
                 {% for product in products %}
-                <li name="nome_produto_carrinho">{{ product.name }} - R$ {{ product.value }}</li>
+                    <li name="nome_produto_carrinho">
+                        {{ product.name }} - R$ {{ product.value }}
+                        <a href="{% url 'remover_carrinho' product.id %}">Remover</a>
+                    </li>
                 {% endfor %}
             </ul>
 
@@ -25,16 +28,10 @@
                 <label for="hora_retirada">Horário de Retirada</label>
                 <br>
                 <div class="alinhar-horario">
-                <input type="time" id="hora_retirada" name="hora_retirada" class="retirada" required>
-                <input class="salvar" type="submit" name="salvar_horario" value="Salvar">
-            </div>
-                {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-                        {% endfor %}
-                </ul>
-                {% endif %}
+                    <input type="time" id="hora_retirada" name="hora_retirada" class="retirada" required>
+                    <input class="salvar" type="submit" name="salvar_horario" value="Salvar">
+                </div>
+               
                 <a href="{% url 'menu' %}">
                     <button class="continuar_comprando" type="button">Continuar Comprando</button>
                 </a>
@@ -42,9 +39,8 @@
                     <button class="pagamento" type="button">Realizar Pagamento</button>
                 </a>
             </form>
+
         </div>
     </main>
-
 </body>
-
 </html>
