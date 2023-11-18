@@ -227,3 +227,15 @@ def resumo_compra(request):
 
     return render(request, 'resumo_compra/resumo_compra.html', context)
 
+@login_required
+def remover_carrinho(request, product_id):
+    user = request.user
+    product = get_object_or_404(Product, pk=product_id)
+    
+    try:
+        carrinho = Cart.objects.get(user=user)        
+        carrinho.products.remove(product)
+    except Cart.DoesNotExist:
+        pass
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

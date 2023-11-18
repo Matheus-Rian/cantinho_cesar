@@ -16,4 +16,5 @@ urlpatterns = [
   path('remover-dos-favoritos/<int:product_id>/', views.remover_dos_favoritos, name='remover-dos-favoritos'),
   path('pagamento/', views.pagamento, name='pagamento'),
   path('resumo_compra/', views.resumo_compra, name='resumo_compra'),
+  path('remover_carrinho/<int:product_id>/', views.remover_carrinho, name='remover_carrinho'),
 ]
