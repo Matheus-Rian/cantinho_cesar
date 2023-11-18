@@ -100,12 +100,19 @@ def entrar(request):
     except User.DoesNotExist:
         messages.error(request, "Usuário não existe ou credenciais incorretas")
         return HttpResponseRedirect("/")
-    
+   
     usuario = authenticate(username=usuario_aux.username,password=request.POST["senha"])
-    if usuario is not None:
+
+
+    if usuario_aux.email=="vendedor@gmail.com" and usuario is not None:
+        login(request, usuario)
+        return HttpResponseRedirect('/vendedor/')    
+    elif usuario is not None:
         login(request, usuario)
         return HttpResponseRedirect('/menu/')
-    return HttpResponseRedirect("/")
+    else:
+        messages.error(request, "Credenciais incorretas")
+        return HttpResponseRedirect("/")
     
 @login_required
 def sair(request):
@@ -124,7 +131,9 @@ def salvar_horario(request):
         if not pedidos_em_andamento.exists():
             pedido = Pedido.objects.create(user=user, status_pagamento="pending", hora_retirada=hora_retirada)
             messages.success(request, "Novo pedido criado com horário.")
-        
+        else:
+            messages.warning(request, "Já existe um pedido em andamento ou pago. Você não pode criar um novo.")
+
         return redirect("/carrinho/")
 
     return render(request, "carrinho.html")
@@ -167,7 +176,7 @@ def pagamento(request):
         metodo_pagamento = request.POST.get("metodo_pagamento")
 
         if metodo_pagamento == "pix":
-            # Lógica para processar pagamento com PIX
+            
             user = request.user
             carrinho = Cart.objects.get(user=user)
             pedido = Pedido.objects.filter(user=user, status_pagamento="pending").first()
@@ -188,6 +197,7 @@ def pagamento(request):
                 carrinho.save()
                 return render(request, 'codigo/codigo.html', {'codigo_pix': pedido.codigo_pix})
 
+        
         elif metodo_pagamento == "pagar_retirada":
             user = request.user
             pedido = Pedido.objects.filter(user=user, status_pagamento="pending").first()
@@ -285,3 +295,11 @@ def adicionar_saldo(request):
             messages.error(request, 'O valor a ser adicionado deve ser maior que zero.')
 
     return render(request, 'adicionar_saldo/adicionar_saldo.html', {'user_profile': user_profile})
+
+@login_required
+def vendedor(request):
+    pedidos = Pedido.objects.all()
+    context = {
+        'pedidos': pedidos,
+    }
+    return render(request, 'vendedor/vendedor.html', context)
