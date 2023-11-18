@@ -1,0 +1,49 @@
+<!-- adicionar_saldo.html -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Adicionar Saldo</title>
+</head>
+<body>
+  <h2>Adicionar Saldo</h2>
+
+  <!-- Exibir o saldo atual do usuário -->
+  <p>Seu Saldo Atual: R$ {{ request.user.userprofile.saldo|default:"0.00" }}</p>
+
+  <!-- Formulário para adicionar saldo -->
+  <form method="post" action="{% url 'adicionar_saldo' %}">
+    {% csrf_token %}
+
+    <!-- Opções fixas para adicionar valores -->
+    <label>Valores para Adicionar:</label>
+    <div>
+      <input type="radio" name="valor_adicional" value="5"> R$ 5,00
+      <input type="radio" name="valor_adicional" value="10"> R$ 10,00
+      <input type="radio" name="valor_adicional" value="15"> R$ 15,00
+      <!-- Adicione outras opções conforme necessário -->
+    </div>
+
+    <!-- Opções para escolher o método de pagamento -->
+    <label for="metodo_pagamento">Método de Pagamento:</label>
+    <select name="metodo_pagamento" id="metodo_pagamento" required>
+      <option value="pix">Pix</option>
+      <!-- Adicione outras opções conforme necessário -->
+    </select>
+
+    <!-- Botão de adicionar saldo -->
+    <button type="submit">Adicionar Saldo</button>
+  </form>
+
+  <!-- Mensagens de feedback -->
+  {% if saldo_adicionado %}
+    <p>Saldo de R$ {{ saldo_adicionado }} adicionado com sucesso!</p>
+  {% endif %}
+
+  {% if valor_invalido %}
+    <p>O valor a ser adicionado deve ser maior que zero.</p>
+  {% endif %}
+
+</body>
+</html>

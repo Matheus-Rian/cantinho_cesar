@@ -1,4 +1,7 @@
+<!-- menu.html com o botão "Carteira" e ícone do Bootstrap -->
+
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -17,6 +20,9 @@
 		<nav class="nav-links">
 			<a href="{% url 'resumo_compra'%}"> Pedidos </a>
 			<a href="{% url 'meus-favoritos' %}" id="meus_favoritos" name="meus_favoritos">Meus Favoritos</a>
+			<a href="{% url 'adicionar_saldo' %}" class="btn btn-primary"> 
+				<i class="bi bi-wallet"></i> Carteira
+			</a>
 			<form method="post" action="{% url 'sair' %}">
 				{% csrf_token %}
 				<input type="submit" value="Sair" class="btn-sair">
@@ -28,7 +34,6 @@
 		{{ form.Selecione }}
 		<input type="submit" value="Selecionar" class="custom-button">
 	</form>
-
 
 	<main class="container">
 		{% if products %}

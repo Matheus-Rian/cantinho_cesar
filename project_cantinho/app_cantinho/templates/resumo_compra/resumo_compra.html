@@ -1,3 +1,4 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -17,20 +18,26 @@
 
             <h2>Produtos Comprados:</h2>
             <ul>
-                {% for produtos in produto %}
-                <li>{{ produto.name }} - R$ {{ produto.value }}</li>
+                {% for produto in produtos %}
+                    <li>{{ produto.name }} - R$ {{ produto.value }}</li>
                 {% endfor %}
             </ul>
 
             <h4 class="total">Total: R$ {{ total }}</h4>
 
-            <h3>Horário de Retirada: {{ hora_retirada }}</h3>
+            {% if hora_retirada %}
+                <h3>Horário de Retirada: {{ hora_retirada }}</h3>
+            {% else %}
+                <h3>Horário de Retirada: Não especificado</h3>
+            {% endif %}
 
-            <h3>Status de Pagamento: {{ status_pagamento }}</h3>
+            {% if status_pagamento %}
+                <h3>Status de Pagamento: {{ status_pagamento }}</h3>
+            {% else %}
+                <h3>Status de Pagamento: Não encontrado</h3>
+            {% endif %}
         </div>
     </main>
 </body>
-
-</html>
 
 </html>

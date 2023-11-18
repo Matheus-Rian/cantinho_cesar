@@ -55,7 +55,7 @@ class VendinhaController():
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
+    saldo = models.DecimalField(default=0.00, max_digits=100, decimal_places=2)
     def __str__(self):
         return self.user.username
   
@@ -66,3 +66,6 @@ class Favoritar(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.product.name}"
+    
+
+
