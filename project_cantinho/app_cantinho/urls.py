@@ -20,5 +20,6 @@ urlpatterns = [
   path('resumo_compra/', views.resumo_compra, name='resumo_compra'),
   path('remover_carrinho/<int:product_id>/', views.remover_carrinho, name='remover_carrinho'),
   path('adicionar_saldo/', views.adicionar_saldo, name='adicionar_saldo'),
+  path('vendedor/', views.vendedor, name='vendedor'),
 
 ]

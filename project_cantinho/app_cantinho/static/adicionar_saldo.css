@@ -19,12 +19,11 @@ body {
 .container-inputs {
     margin: 10px auto;
     width: 400px;
-    max-height: 500px;
+    height: 400px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 25px;
-    overflow-y: scroll;
 }
 
 
@@ -55,15 +54,6 @@ body {
     padding: -10px;
 }
 
-
-.botao-remover {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-}
-
-
 .remover{
     background-color: orange;
     color: #fff;
@@ -72,8 +62,4 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-}
-
-.remover:hover {
-    background-color:red;
 }

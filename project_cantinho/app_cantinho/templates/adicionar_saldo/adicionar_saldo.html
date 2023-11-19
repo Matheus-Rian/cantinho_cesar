@@ -1,49 +1,50 @@
-<!-- adicionar_saldo.html -->
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <title>Adicionar Saldo</title>
+  <link rel="stylesheet" href="{% static 'adicionar_saldo.css' %}">
 </head>
-<body>
-  <h2>Adicionar Saldo</h2>
+<body class="body">
 
-  <!-- Exibir o saldo atual do usuário -->
-  <p>Seu Saldo Atual: R$ {{ request.user.userprofile.saldo|default:"0.00" }}</p>
+  <div class="container">
+    <main class="main-container">
+      <a href="{% url 'menu' %}">
+        <img class="img-seta" src="{% static 'images/seta.png' %}" alt="Logo img_cantinho_cesar">
+      </a>
+      <div class="container-inputs container-inputs-adicionar-saldo">
 
-  <!-- Formulário para adicionar saldo -->
-  <form method="post" action="{% url 'adicionar_saldo' %}">
-    {% csrf_token %}
+        <h1 class="barra">Adicionar Saldo</h1>
 
-    <!-- Opções fixas para adicionar valores -->
-    <label>Valores para Adicionar:</label>
-    <div>
-      <input type="radio" name="valor_adicional" value="5"> R$ 5,00
-      <input type="radio" name="valor_adicional" value="10"> R$ 10,00
-      <input type="radio" name="valor_adicional" value="15"> R$ 15,00
-      <!-- Adicione outras opções conforme necessário -->
-    </div>
+        <p class="saldo-atual">Seu Saldo Atual: R$ {{ request.user.userprofile.saldo|default:"0.00" }}</p>
+        <form method="post" action="{% url 'adicionar_saldo' %}">
+          {% csrf_token %}
 
-    <!-- Opções para escolher o método de pagamento -->
-    <label for="metodo_pagamento">Método de Pagamento:</label>
-    <select name="metodo_pagamento" id="metodo_pagamento" required>
-      <option value="pix">Pix</option>
-      <!-- Adicione outras opções conforme necessário -->
-    </select>
+          <label>Valores para Adicionar:</label>
+          <div class="opcoes-valores">
+            <input type="radio" name="valor_adicional" value="5"> R$ 5,00
+            <input type="radio" name="valor_adicional" value="10"> R$ 10,00
+            <input type="radio" name="valor_adicional" value="15"> R$ 15,00
+          </div>
 
-    <!-- Botão de adicionar saldo -->
-    <button type="submit">Adicionar Saldo</button>
-  </form>
+          <label for="metodo_pagamento">Método de Pagamento:</label>
+          <select name="metodo_pagamento" id="metodo_pagamento" required>
+            <option value="pix">Pix</option>
+          </select>
+          <button type="submit" class="remover">Adicionar Saldo</button>
+        </form>
+        {% if saldo_adicionado %}
+          <p class="feedback sucesso">Saldo de R$ {{ saldo_adicionado }} adicionado com sucesso!</p>
+        {% endif %}
 
-  <!-- Mensagens de feedback -->
-  {% if saldo_adicionado %}
-    <p>Saldo de R$ {{ saldo_adicionado }} adicionado com sucesso!</p>
-  {% endif %}
+        {% if valor_invalido %}
+          <p class="feedback erro">O valor a ser adicionado deve ser maior que zero.</p>
+        {% endif %}
 
-  {% if valor_invalido %}
-    <p>O valor a ser adicionado deve ser maior que zero.</p>
-  {% endif %}
+      </div>
+    </main>
+  </div>
 
 </body>
 </html>
