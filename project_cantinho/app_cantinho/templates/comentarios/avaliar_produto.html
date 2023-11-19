@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Avaliar Produto</title>
+    <link rel="stylesheet" href="{% static 'avaliar_produto.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <main class="main-container">
+            <a href="{% url 'menu' %}">
+                <img class="img-seta" src="{% static 'images/seta.png' %}" alt="Seta">
+            </a>
+            <div class="container-avaliar-produto">
+
+                <h1 class="barra">Avaliar Produto</h1>
+
+                <form method="post" action="{% url 'avaliacoes' %}">
+                    {% csrf_token %}
+                    
+                    <label for="comment">Comentário:</label>
+                    <div class="produtos-lista">
+                        {% for produto in produtos %}
+                            <p>{{ produto.name }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <input type="hidden" name="pedido_id" value="{{ pedido.id }}">
+                    <input type="hidden" name="produto_id" value="{{ produto.id }}">
+
+                    <label for="comment">Comentário:</label>
+                    <textarea name="comment" id="comment" rows="4" required></textarea>
+
+                    <input class="salvar" type="submit" name="salvar_avaliacao" value="Salvar Avaliação">
+                </form>
+
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

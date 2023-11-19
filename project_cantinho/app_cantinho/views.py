@@ -4,7 +4,7 @@ from .models import VendinhaController, Product, Cart,UserProfile,Favoritar, Ped
 from django.views import View
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -291,21 +291,31 @@ def adicionar_saldo(request):
             messages.error(request, 'O valor a ser adicionado deve ser maior que zero.')
 
     return render(request, 'adicionar_saldo/adicionar_saldo.html', {'user_profile': user_profile})
+
 @login_required
 def avaliar_pedido(request, pedido_id, produto_id):
     pedido = get_object_or_404(Pedido, pk=pedido_id)
+    produto = get_object_or_404(Product, pk=produto_id)
+
     produtos = pedido.products.all()
-    if request.method == 'POST':
-        comment = request.POST.get('comment')
-        produto_id = request.POST.get('produto')
-        if comment and pedido_id:
-            produto = get_object_or_404(Product, pk=produto_id) 
-            Review.objects.create(product=produto, user=request.user, comment=comment, pedido=pedido)
-            return HttpResponseRedirect(reverse('avaliacoes'))
     
-    return render(request, 'comentarios/avaliar_pedido.html', {'pedido': pedido, 'produtos': produtos})
+    return render(request, 'comentarios/avaliar_produto.html', {'pedido': pedido, 'produto': produto, 'produtos':produtos})
 
 
 def avaliacoes(request):
+    if request.method == 'POST':
+        if 'salvar_avaliacao' in request.POST:
+            comment = request.POST.get('comment')
+            pedido_id = request.POST.get('pedido_id')
+            produto_id = request.POST.get('produto_id')
+            try:
+                pedido = get_object_or_404(Pedido, pk=pedido_id)
+                produto = get_object_or_404(Product, pk=produto_id)
+                if comment:
+                    Review.objects.create(product=produto, user=request.user, comment=comment, pedido=pedido)
+                    return redirect('avaliacoes')
+            except(Pedido.DoesNotExist, Product.DoesNotExist):
+                 return HttpResponseBadRequest("Pedido ou produto não encontrado.")
+
     avaliacoes = Review.objects.all()
     return render(request, 'comentarios/avaliacoes.html', {'avaliacoes': avaliacoes})

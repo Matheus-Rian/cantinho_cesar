@@ -1,10 +1,36 @@
-{% block content %}
-  <h1>Avaliações</h1>
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-  {% for avaliacao in avaliacoes %}
-    <h2>{{ avaliacao.product.name }}</h2>
-    <p>Usuário: {{ avaliacao.user.username }}</p>
-    <p>Comentário: {{ avaliacao.comment }}</p>
-    <hr>
-  {% endfor %}
-{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>Avaliações</title>
+    <link rel="stylesheet" href="{% static 'avaliacoes.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <main class="main-container">
+            <a href="{% url 'menu' %}">
+                <img class="img-seta" src="{% static 'images/seta.png' %}" alt="Seta">
+            </a>
+            <div class="container-avaliacoes">
+
+                <h1 class="barra">Avaliações</h1>
+
+                <div class="avaliacoes-lista">
+                    {% for avaliacao in avaliacoes %}
+                        <div class="avaliacao-item">
+                            <h2>{{ avaliacao.product.name }}</h2>
+                            <p>Usuário: {{ avaliacao.user.username }}</p>
+                            <p>Comentário: {{ avaliacao.comment|default:"N/A" }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

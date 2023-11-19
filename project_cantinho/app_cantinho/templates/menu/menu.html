@@ -1,4 +1,4 @@
-<!-- menu.html com o botão "Carteira" e ícone do Bootstrap -->
+
 
 {% load static %}
 
@@ -18,6 +18,7 @@
 	<header class="header">
 		<img class="img" src="{% static 'images/img_cantinho_cesar.png' %}" alt="Logo img_cantinho_cesar">
 		<nav class="nav-links">
+			<a href="{% url 'avaliacoes'%}"> Avaliações </a>
 			<a href="{% url 'resumo_compra'%}"> Pedidos </a>
 			<a href="{% url 'meus-favoritos' %}" id="meus_favoritos" name="meus_favoritos">Meus Favoritos</a>
 			<a href="{% url 'adicionar_saldo' %}" class="btn btn-primary"> 
