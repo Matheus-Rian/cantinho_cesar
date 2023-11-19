@@ -132,10 +132,7 @@ def salvar_horario(request):
 
         if not pedidos_em_andamento.exists():
             pedido = Pedido.objects.create(user=user, status_pagamento="pending", hora_retirada=hora_retirada)
-            messages.success(request, "Novo pedido criado com horário.")
-        else:
-            messages.warning(request, "Já existe um pedido em andamento ou pago. Você não pode criar um novo.")
-
+    
         return redirect("/carrinho/")
 
     return render(request, "carrinho.html")
@@ -186,7 +183,7 @@ def pagamento(request):
             if pedido:
                 pedido.cart = carrinho
                 pedido.products.set(carrinho.products.all())
-                total = total_pedido(pedido)
+                total = total_pedido(pedido)    
                 pedido.total = total
                 pedido.codigo_pix = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
                 pedido.status_pagamento = "paid"
@@ -232,8 +229,6 @@ def pagamento(request):
 
                     pedido.status_pagamento = "paid"
                     pedido.save()
-
-                    messages.success(request,'Pagamento realizado com sucesso!')
                     return redirect('resumo_compra')
                 else:
                     messages.error(request, 'Saldo insuficiente para realizar o pagamento com saldo.')
@@ -294,11 +289,6 @@ def adicionar_saldo(request):
         if valor_adicional > 0:
             user_profile.saldo += valor_adicional
             user_profile.save()
-
-            messages.success(request, f'Saldo de R${valor_adicional:.2f} adicionado com sucesso!')
-
-        else:
-            messages.error(request, 'O valor a ser adicionado deve ser maior que zero.')
 
     return render(request, 'adicionar_saldo/adicionar_saldo.html', {'user_profile': user_profile})
 
