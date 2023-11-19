@@ -1,4 +1,3 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -16,32 +15,21 @@
         <h1 class="barra">Histórico de Compras</h1>
 
         {% for pedido_info in lista_pedidos %}
-        <div class="container-inputs">
-            <h2>Produtos Comprados:</h2>
-            <ul>
-                {% for produto in pedido_info.produtos %}
-                    <li>{{ produto.name }} - R$ {{ produto.value }}</li>
-                    <a href="{% url 'avaliar_pedido' pedido_id=pedido_info.pedido.id produto_id=produto.id %}">Avaliar o produto</a>
-                {% endfor %}
-            </ul>
+            <div class="container-inputs">
+                <h2>Produtos Comprados:</h2>
+                <ul>
+                    {% for produto in pedido_info.produtos %}
+                        <li>{{ produto.name }} - R$ {{ produto.value }}
+                            <a href="{% url 'avaliar_pedido' pedido_id=pedido_info.pedido.id produto_id=produto.id %}">Avaliar o produto</a>
+                        </li>
+                    {% endfor %}
+                </ul>
 
-
-            <h4 class="total">Total: R$ {{ pedido_info.total }}</h4>
-
-            {% if hora_retirada %}
+                <h4 class="total">Total: R$ {{ pedido_info.total }}</h4>
                 <h3>Horário de Retirada: {{ pedido_info.hora_retirada }}</h3>
-            {% else %}
-                <h3>Horário de Retirada: Não especificado</h3>
-            {% endif %}
-
-            {% if status_pagamento %}
                 <h3>Status de Pagamento: {{ pedido_info.status_pagamento }}</h3>
-            {% else %}
-                <h3>Status de Pagamento: Não encontrado</h3>
-            {% endif %}
-        </div>
+            </div>
         {% endfor %}
-
     </main>
 </body>
 

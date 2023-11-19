@@ -220,7 +220,7 @@ def pagamento(request):
 
             if pedido:
                 pedido.cart = carrinho
-                pedido.products.set(carrinho.products.all())
+                pedido.products.set(carrinho.products.all())    
                 total = total_pedido(pedido)
                 pedido.total = total
                 pedido.save()
