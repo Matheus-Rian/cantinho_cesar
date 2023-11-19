@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <main class="main-container">
-            <a href="{% url 'menu' %}">
+            <a href="{% url 'resumo_compra' %}">
                 <img class="img-seta" src="{% static 'images/seta.png' %}" alt="Seta">
             </a>
             <div class="container-avaliar-produto">
@@ -22,10 +22,8 @@
                     {% csrf_token %}
                     
                     <label for="comment">Comentário:</label>
-                    <div class="produtos-lista">
-                        {% for produto in produtos %}
-                            <p>{{ produto.name }}</p>
-                        {% endfor %}
+                    <div class="produtos-lista">                       
+                      <p>{{ produto.name }}</p>               
                     </div>
 
                     <input type="hidden" name="pedido_id" value="{{ pedido.id }}">
