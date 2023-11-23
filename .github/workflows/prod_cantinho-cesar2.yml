@@ -16,7 +16,8 @@ jobs:
       - name: Set up Python version
         uses: actions/setup-python@v1
         with:
-          python-version: '3.11'
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
 
       - name: Create and start virtual environment
         run: |
@@ -25,8 +26,16 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r project_cantinho/requirements.txt
+        
+      - name: Install Selenium
+        run: pip install selenium
 
-      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
+      - name: Run  server e Tests
+        run: |
+          python project_cantinho/manage.py runserver &
+                  sleep 5
+          python project_cantinho/manage.py test app_cantinho
+      
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
