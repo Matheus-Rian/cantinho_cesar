@@ -120,3 +120,37 @@ https://docs.google.com/document/d/1Iy46XEt1GkSDpi4vgnVepXKb0E6H7CNj_UAbXbauQMM/
 
 
 ## Entrega 04
+
+**Lo-fi atualizado:**
+
+
+**Screencast Lo-fi**
+
+
+**Diagrama de atividades:**
+
+https://drive.google.com/file/d/1SQ0MdjNiM5fpcoFjU7Zw37nUbssNIpR2/view?usp=sharing
+
+**Deployment**
+
+https://cantinho-cesar-2.azurewebsites.net/
+
+**Screencast das histórias:**
+
+
+**Issue/Bug tracker**
+
+
+**CI/CD - screencast**
+
+
+**Teste Automatizado Selenium - screencast**
+
+
+**Atualização - programação em pares**
+
+https://docs.google.com/document/d/1Iy46XEt1GkSDpi4vgnVepXKb0E6H7CNj_UAbXbauQMM/edit?usp=sharing
+
+**Quadro no Jira**
+
+
