@@ -64,17 +64,17 @@ class Historia3(LiveServerTestCase):
                 botao_comprar = driver.find_element(By.CLASS_NAME, 'pagamento')
                 botao_comprar.click()
                 time.sleep(2)
-                pagamento = driver.find_element(By.ID, 'pix')
+                pagamento = driver.find_element(By.ID, 'pagar_retirada')
                 pagamento.click()
                 pagar = driver.find_element(By.NAME, 'botao_pagar')
                 pagar.click()
                 time.sleep(2)
                 try:
-                    codigo = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, 'codigo')))
+                    codigo = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, 'container-inputs')))
                     self.assertTrue(codigo.is_displayed())
                 except StaleElementReferenceException:
 
-                    codigo = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, 'codigo')))
+                    codigo = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, 'container-inputs')))
                     self.assertTrue(codigo.is_displayed())
             except StaleElementReferenceException:
                 continue
