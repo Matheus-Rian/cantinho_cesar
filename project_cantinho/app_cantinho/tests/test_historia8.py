@@ -64,15 +64,15 @@ class Historia3(LiveServerTestCase):
                 botao_comprar = driver.find_element(By.CLASS_NAME, 'pagamento')
                 botao_comprar.click()
                 time.sleep(2)
-                pagamento = driver.find_element(By.ID, 'pix')
+                pagamento = driver.find_element(By.ID, 'pagar_retirada')
                 pagamento.click()
                 pagar = driver.find_element(By.NAME, 'botao_pagar')
                 pagar.click()
                 time.sleep(2)
                 try:
-                    WebDriverWait(driver, 30).until(EC.visibility_of_element_located((By.CLASS_NAME, 'codigo')))
+                    driver.find_element(By.NAME, 'sucesso-retirada')
                 except NoSuchElementException:
-                    self.fail("Elemento 'código' não foi encontrado após o pagamento com pix.")
+                    self.fail("Elemento 'retirada' não foi encontrado após o pagamento com pix.")
             except StaleElementReferenceException:
                 continue
 
