@@ -1,15 +1,19 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from .forms import OptionsVendinha
-from .models import VendinhaController, Product, Cart,UserProfile,Favoritar, Pedido
+from .models import VendinhaController, Product, Cart,UserProfile,Favoritar, Pedido, Review
 from django.views import View
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .utils import total_pedido, atualizar_estoque_produto
+from decimal import Decimal
 import random, string
+from django.contrib import messages
+from django.urls import reverse
+from django.db.models import Count
 
 def get_products_by_vendinha(name):
   vendinha = VendinhaController.get_vendinha_by_name(name=name)
@@ -98,12 +102,19 @@ def entrar(request):
     except User.DoesNotExist:
         messages.error(request, "Usuário não existe ou credenciais incorretas")
         return HttpResponseRedirect("/")
-    
+   
     usuario = authenticate(username=usuario_aux.username,password=request.POST["senha"])
-    if usuario is not None:
+
+
+    if usuario_aux.email=="vendedor@gmail.com" and usuario is not None:
+        login(request, usuario)
+        return HttpResponseRedirect('/vendedor/')    
+    elif usuario is not None:
         login(request, usuario)
         return HttpResponseRedirect('/menu/')
-    return HttpResponseRedirect("/")
+    else:
+        messages.error(request, "Credenciais incorretas")
+        return HttpResponseRedirect("/")
     
 @login_required
 def sair(request):
@@ -121,10 +132,7 @@ def salvar_horario(request):
 
         if not pedidos_em_andamento.exists():
             pedido = Pedido.objects.create(user=user, status_pagamento="pending", hora_retirada=hora_retirada)
-            messages.success(request, "Novo pedido criado com horário.")
-        else:
-            messages.warning(request, "Já existe um pedido em andamento ou pago. Você não pode criar um novo.")
-
+    
         return redirect("/carrinho/")
 
     return render(request, "carrinho.html")
@@ -159,13 +167,15 @@ def remover_dos_favoritos(request, product_id):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+
 @login_required
 def pagamento(request):
-    
+    context = {}
     if request.method == "POST":
         metodo_pagamento = request.POST.get("metodo_pagamento")
 
         if metodo_pagamento == "pix":
+            
             user = request.user
             carrinho = Cart.objects.get(user=user)
             pedido = Pedido.objects.filter(user=user, status_pagamento="pending").first()
@@ -173,7 +183,7 @@ def pagamento(request):
             if pedido:
                 pedido.cart = carrinho
                 pedido.products.set(carrinho.products.all())
-                total = total_pedido(pedido)
+                total = total_pedido(pedido)    
                 pedido.total = total
                 pedido.codigo_pix = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
                 pedido.status_pagamento = "paid"
@@ -199,10 +209,36 @@ def pagamento(request):
                 pedido.status_pagamento = "pending"
                 pedido.save()
                 return render(request, 'retirada/retirada.html')
-                
 
-    
+        elif metodo_pagamento == "saldo":
+            user = request.user
+            carrinho = Cart.objects.get(user=user)
+            pedido = Pedido.objects.filter(user=user, status_pagamento="pending").first()
+
+            if pedido:
+                pedido.cart = carrinho
+                pedido.products.set(carrinho.products.all())    
+                total = total_pedido(pedido)
+                pedido.total = total
+                pedido.save()
+
+                if user.userprofile.saldo >= pedido.total:
+                   
+                    user.userprofile.saldo -= pedido.total
+                    user.userprofile.save()
+
+                    pedido.status_pagamento = "paid"
+                    pedido.save()
+                    return redirect('resumo_compra')
+                else:
+                    messages.error(request, 'Saldo insuficiente para realizar o pagamento com saldo.')
+
+                    return redirect('pagamento')
     return render(request, 'pagamento/pagamento.html')
+
+
+
+
 
 def resumo_compra(request):
     user = request.user
@@ -210,20 +246,84 @@ def resumo_compra(request):
     produtos = carrinho.products.all()
     total = sum(produto.value for produto in produtos)
 
+    pedidos = Pedido.objects.filter(user=user).order_by('-id')
 
-    pedido = Pedido.objects.filter(user=user).order_by('-id').first()
-
-    if pedido:
+    lista_pedidos = []
+    for pedido in pedidos:
         status_pagamento = pedido.status_pagamento
-    else:
-        status_pagamento = "Não encontrado" 
+        hora_retirada = pedido.hora_retirada
+        lista_pedidos.append({
+            'pedido': pedido,
+            'produtos': pedido.products.all(),
+            'total': sum(produto.value for produto in pedido.products.all()),
+            'hora_retirada': hora_retirada,
+            'status_pagamento': status_pagamento,
+        })
 
     context = {
-        'produtos': produtos,
-        'total': total,
-        'hora_retirada': pedido.hora_retirada,
-        'status_pagamento': status_pagamento,
+        'lista_pedidos': lista_pedidos,
     }
 
     return render(request, 'resumo_compra/resumo_compra.html', context)
 
+@login_required
+def remover_carrinho(request, product_id):
+    user = request.user
+    product = get_object_or_404(Product, pk=product_id)
+    
+    try:
+        carrinho = Cart.objects.get(user=user)        
+        carrinho.products.remove(product)
+    except Cart.DoesNotExist:
+        pass
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+@login_required
+def adicionar_saldo(request):
+    user_profile = request.user.userprofile
+
+    if request.method == 'POST':
+        valor_adicional = Decimal(request.POST.get('valor_adicional', 0.0))
+
+        if valor_adicional > 0:
+            user_profile.saldo += valor_adicional
+            user_profile.save()
+
+    return render(request, 'adicionar_saldo/adicionar_saldo.html', {'user_profile': user_profile})
+
+@login_required
+def avaliar_pedido(request, pedido_id, produto_id):
+    pedido = get_object_or_404(Pedido, pk=pedido_id)
+    produto = get_object_or_404(Product, pk=produto_id)
+
+    produtos = pedido.products.all()
+    
+    return render(request, 'comentarios/avaliar_produto.html', {'pedido': pedido, 'produto': produto, 'produtos':produtos})
+
+
+def avaliacoes(request):
+    if request.method == 'POST':
+        if 'salvar_avaliacao' in request.POST:
+            comment = request.POST.get('comment')
+            pedido_id = request.POST.get('pedido_id')
+            produto_id = request.POST.get('produto_id')
+            try:
+                pedido = get_object_or_404(Pedido, pk=pedido_id)
+                produto = get_object_or_404(Product, pk=produto_id)
+                if comment:
+                    Review.objects.create(product=produto, user=request.user, comment=comment, pedido=pedido)
+                    return redirect('avaliacoes')
+            except(Pedido.DoesNotExist, Product.DoesNotExist):
+                 return HttpResponseBadRequest("Pedido ou produto não encontrado.")
+
+    avaliacoes = Review.objects.all()
+    return render(request, 'comentarios/avaliacoes.html', {'avaliacoes': avaliacoes})
+
+@login_required
+def vendedor(request):
+    pedidos = Pedido.objects.all()
+    context = {
+        'pedidos': pedidos,
+    }
+    return render(request, 'vendedor/vendedor.html', context)

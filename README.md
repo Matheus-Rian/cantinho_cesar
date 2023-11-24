@@ -118,3 +118,45 @@ https://docs.google.com/document/d/1Iy46XEt1GkSDpi4vgnVepXKb0E6H7CNj_UAbXbauQMM/
 ![image](https://github.com/mateusioliveira/cantinho_cesar/assets/98843736/36c2427f-a393-46ef-8a98-33ba40b705d2)
 
 
+
+## Entrega 04
+
+**Lo-fi atualizado:**
+
+
+**Screencast Lo-fi**
+
+
+**Diagrama de atividades:**
+
+https://drive.google.com/file/d/1SQ0MdjNiM5fpcoFjU7Zw37nUbssNIpR2/view?usp=sharing
+
+**Deployment**
+
+[https://cantinho-cesar-2.azurewebsites.net/](https://cantinho-cesar2.azurewebsites.net/)
+
+**Screencast das histórias:**
+
+
+**Issue/Bug tracker**
+
+
+**CI/CD - screencast**
+
+https://drive.google.com/file/d/1qD6ja99LhFBssLr5VJ9H4ZrrOHk8FQx6/view?usp=sharing
+
+
+**Teste Automatizado Selenium - screencast**
+
+
+**Atualização - programação em pares**
+
+https://docs.google.com/document/d/1Iy46XEt1GkSDpi4vgnVepXKb0E6H7CNj_UAbXbauQMM/edit?usp=sharing
+
+**Quadro no Jira**
+
+![image](https://github.com/mateusioliveira/cantinho_cesar/assets/98843736/cccd3d78-8b2e-4589-873e-11c079f9d724)
+
+![image](https://github.com/mateusioliveira/cantinho_cesar/assets/98843736/04b55c8f-d116-4d18-b1dd-440b06d65089)
+
+

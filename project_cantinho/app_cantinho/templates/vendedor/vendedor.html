@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Pedidos</title>
+    <link rel="stylesheet" href="{% static 'favoritos.css' %}">
+</head>
+
+<body style="margin: 0; padding: 0; height: 90vh; background-image: linear-gradient(45deg, #FFA500, #FF4500);
+    background-size: cover; background-attachment: fixed; z-index: -1;">
+
+    <div class="container">
+        <main class="main-container">
+            <div class="container-inputs">
+                <h1 class="barra">Lista de Pedidos</h1>
+                <ul class="alinhar">
+                    {% for pedido in pedidos %}
+                        <li class="item">
+                            <span class="informacao">
+                                <strong>Total:</strong> {{ pedido.total }}<br>
+                                <strong>Hora de Retirada:</strong> {{ pedido.hora_retirada }}<br>
+                                <strong>Status de Pagamento:</strong> {{ pedido.status_pagamento }}<br>
+                                <strong>Produtos:</strong>
+                                <ul>
+                                    {% for produto in pedido.products.all %}
+                                        <li>
+                                            <strong>Nome do Produto:</strong> {{ produto.name }}<br>
+                                            <strong>Valor:</strong> R$ {{ produto.value }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </span>
+                        </li>
+                        <br>
+                    {% endfor %}
+                    <br>
+                </ul>
+
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

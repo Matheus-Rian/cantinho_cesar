@@ -1,8 +1,17 @@
 {% load static %}
+<!DOCTYPE html>
 <html>
 
 <head>
+    <title>Pagamento</title>
     <link rel="stylesheet" href="{% static 'pagamento.css' %}">
+    <style>
+        /* Adicione estilos CSS para tornar a opção de saldo menos destacada quando estiver desativada */
+        #saldo:disabled + label {
+            color: #999;  /* Cor do texto menos destacado */
+            cursor: not-allowed;  /* Cursor indicando que não está disponível para seleção */
+        }
+    </style>
 </head>
 
 <body>
@@ -12,6 +21,16 @@
     <main class="main-container">
         <div class="container-inputs">
             <h1 class="barra">Forma de pagamento</h1>
+            
+            {# Exibe mensagens de erro #}
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            
             <form method="post" action="{% url 'pagamento' %}">
                 {% csrf_token %}
 
@@ -24,10 +43,21 @@
                     <input type="radio" name="metodo_pagamento" value="pagar_retirada" id="pagar_retirada">
                     Pagar na retirada
                 </label><br>
+                {% if user.userprofile.saldo == 0 %}
+                    <label for="saldo" style="color: #999;">Saldo Indisponível</label><br>
+                {% else %}
+                    <label>
+                        <input type="radio" name="metodo_pagamento" value="saldo" id="saldo">
+                        Saldo
+                        
+                        (Disponível: R$ {{ user.userprofile.saldo|floatformat:2 }})
+                    </label><br>
+                {% endif %}
 
                 <button type="submit" class="confirmar-pagamento" name="botao_pagar">Fazer pedido</button>
             </form>
         </div>
     </main>
+</body>
 
 </html>

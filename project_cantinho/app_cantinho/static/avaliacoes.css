@@ -16,17 +16,14 @@ body {
     margin-top: 5rem;
 }
 
-.container-inputs {
+.container-avaliacoes {
     margin: 10px auto;
-    width: 400px;
-    max-height: 500px;
+    width: 600px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 25px;
-    overflow-y: scroll;
 }
-
 
 .barra {
     position: fixed;
@@ -47,33 +44,29 @@ body {
     left: 10px;
 }
 
-
-.favorito-item {
+.avaliacoes-lista {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: -10px;
+    flex-direction: column;
+    gap: 20px;
 }
 
-
-.botao-remover {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 5px 10px;
+.avaliacao-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
-
-.remover{
-    background-color: orange;
-    color: #fff;
-    padding: 6px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
+.avaliacao-item h2 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
 }
 
-.remover:hover {
-    background-color:red;
+.avaliacao-item p {
+    margin: 0;
+    color: #555;
+}
+
+.avaliacao-item:hover {
+    background-color: #e0e0e0;
 }
