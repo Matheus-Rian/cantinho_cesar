@@ -133,7 +133,7 @@ https://drive.google.com/file/d/1SQ0MdjNiM5fpcoFjU7Zw37nUbssNIpR2/view?usp=shari
 
 **Deployment**
 
-[https://cantinho-cesar-2.azurewebsites.net/](https://cantinho-cesar2.azurewebsites.net/)
+https://cantinho-cesar2.azurewebsites.net/
 
 **Screencast das histórias:**
 
