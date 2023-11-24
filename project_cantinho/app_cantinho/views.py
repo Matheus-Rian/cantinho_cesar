@@ -132,7 +132,9 @@ def salvar_horario(request):
 
         if not pedidos_em_andamento.exists():
             pedido = Pedido.objects.create(user=user, status_pagamento="pending", hora_retirada=hora_retirada)
-    
+            messages.success(request, "Novo pedido criado com horário.")
+        else:
+            messages.warning(request, "Já existe um pedido em andamento ou pago. Você não pode criar um novo.")
         return redirect("/carrinho/")
 
     return render(request, "carrinho.html")
