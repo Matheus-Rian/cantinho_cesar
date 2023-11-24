@@ -51,5 +51,3 @@ class Historia10(LiveServerTestCase):
 
         driver.quit()
 
-if __name__ == '__main__':
-    LiveServerTestCase.run_tests()
