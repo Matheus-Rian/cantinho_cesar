@@ -45,3 +45,16 @@ body {
     justify-content: space-between;
     padding: -10px;
 }
+
+.btn-sair {
+    background-color: #fff;
+    color: #ffa500;
+    position: fixed;
+    top: 5%;
+    left: 2%;
+    padding: 10px 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
