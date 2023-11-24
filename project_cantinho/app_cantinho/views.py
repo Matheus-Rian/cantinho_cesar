@@ -132,7 +132,9 @@ def salvar_horario(request):
 
         if not pedidos_em_andamento.exists():
             pedido = Pedido.objects.create(user=user, status_pagamento="pending", hora_retirada=hora_retirada)
-    
+            messages.success(request, "Novo pedido criado com horário.")
+        else:
+            messages.warning(request, "Já existe um pedido em andamento ou pago. Você não pode criar um novo.")
         return redirect("/carrinho/")
 
     return render(request, "carrinho.html")
@@ -282,6 +284,8 @@ def remover_carrinho(request, product_id):
 @login_required
 def adicionar_saldo(request):
     user_profile = request.user.userprofile
+    saldo_adicionado = None
+    
 
     if request.method == 'POST':
         valor_adicional = Decimal(request.POST.get('valor_adicional', 0.0))
@@ -289,8 +293,14 @@ def adicionar_saldo(request):
         if valor_adicional > 0:
             user_profile.saldo += valor_adicional
             user_profile.save()
+            saldo_adicionado = valor_adicional
 
-    return render(request, 'adicionar_saldo/adicionar_saldo.html', {'user_profile': user_profile})
+    return render(request, 'adicionar_saldo/adicionar_saldo.html', {
+        'user_profile': user_profile,
+        'saldo_adicionado': saldo_adicionado,
+        
+    })
+
 
 @login_required
 def avaliar_pedido(request, pedido_id, produto_id):

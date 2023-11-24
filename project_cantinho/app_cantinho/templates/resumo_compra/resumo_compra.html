@@ -20,7 +20,7 @@
                 <ul>
                     {% for produto in pedido_info.produtos %}
                         <li>{{ produto.name }} - R$ {{ produto.value }}
-                            <a href="{% url 'avaliar_pedido' pedido_id=pedido_info.pedido.id produto_id=produto.id %}">Avaliar o produto</a>
+                            <a href="{% url 'avaliar_pedido' pedido_id=pedido_info.pedido.id produto_id=produto.id %}" id="avaliar_produto" name="avaliar_produto">Avaliar o produto</a>
                         </li>
                     {% endfor %}
                 </ul>

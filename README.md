@@ -2,7 +2,7 @@
 
 **Descrição do produto.:**
 
-Nossa empolgante proposta envolve a criação de uma aplicação web altamente funcional e intuitiva, dedicada a otimizar e simplificar o fluxo de compras e vendas na adorável 'vendinha' da CESAR School. Nosso objetivo central é fornecer uma solução abrangente que atenda às necessidades tanto dos clientes quanto dos funcionários envolvidos nesse processo.
+Nossa empolgante proposta envolve a criação de uma aplicação web altamente funcional e intuitiva, dedicada a otimizar e simplificar o fluxo de compras e vendas na adorável 'vendinha' da CESAR School. Nosso objetivo central é fornecer uma solução abrangente que atenda às necessidades tanto dos clientes quanto dos funcionários envolvidos nesse processo
 
 **Integrantes do grupo:**
 - Julia Felix Cordeiro
@@ -120,3 +120,43 @@ https://docs.google.com/document/d/1Iy46XEt1GkSDpi4vgnVepXKb0E6H7CNj_UAbXbauQMM/
 
 
 ## Entrega 04
+
+**Lo-fi atualizado:**
+
+
+**Screencast Lo-fi**
+
+
+**Diagrama de atividades:**
+
+https://drive.google.com/file/d/1SQ0MdjNiM5fpcoFjU7Zw37nUbssNIpR2/view?usp=sharing
+
+**Deployment**
+
+[https://cantinho-cesar-2.azurewebsites.net/](https://cantinho-cesar2.azurewebsites.net/)
+
+**Screencast das histórias:**
+
+
+**Issue/Bug tracker**
+
+
+**CI/CD - screencast**
+
+https://drive.google.com/file/d/1qD6ja99LhFBssLr5VJ9H4ZrrOHk8FQx6/view?usp=sharing
+
+
+**Teste Automatizado Selenium - screencast**
+
+
+**Atualização - programação em pares**
+
+https://docs.google.com/document/d/1Iy46XEt1GkSDpi4vgnVepXKb0E6H7CNj_UAbXbauQMM/edit?usp=sharing
+
+**Quadro no Jira**
+
+![image](https://github.com/mateusioliveira/cantinho_cesar/assets/98843736/cccd3d78-8b2e-4589-873e-11c079f9d724)
+
+![image](https://github.com/mateusioliveira/cantinho_cesar/assets/98843736/04b55c8f-d116-4d18-b1dd-440b06d65089)
+
+

@@ -35,12 +35,9 @@
           <button type="submit" class="remover">Adicionar Saldo</button>
         </form>
         {% if saldo_adicionado %}
-          <p class="feedback sucesso">Saldo de R$ {{ saldo_adicionado }} adicionado com sucesso!</p>
+          <p class="feedback sucesso">Valor adicionado com sucesso!</p>
         {% endif %}
 
-        {% if valor_invalido %}
-          <p class="feedback erro">O valor a ser adicionado deve ser maior que zero.</p>
-        {% endif %}
 
       </div>
     </main>
