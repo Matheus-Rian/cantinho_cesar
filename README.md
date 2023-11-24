@@ -143,6 +143,8 @@ https://drive.google.com/file/d/1SQ0MdjNiM5fpcoFjU7Zw37nUbssNIpR2/view?usp=shari
 
 **CI/CD - screencast**
 
+https://drive.google.com/file/d/1qD6ja99LhFBssLr5VJ9H4ZrrOHk8FQx6/view?usp=sharing
+
 
 **Teste Automatizado Selenium - screencast**
 
