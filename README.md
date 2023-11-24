@@ -140,6 +140,10 @@ https://drive.google.com/file/d/1SQ0MdjNiM5fpcoFjU7Zw37nUbssNIpR2/view?usp=shari
 
 **Issue/Bug tracker**
 
+![image](https://github.com/mateusioliveira/cantinho_cesar/assets/98843736/2eb49a45-7883-404d-99a1-b338bb8defc3)
+
+![image](https://github.com/mateusioliveira/cantinho_cesar/assets/98843736/fcee54e2-a3a9-4e44-a82b-edd7a6b5d902)
+
 
 **CI/CD - screencast**
 
