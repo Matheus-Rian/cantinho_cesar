@@ -70,7 +70,7 @@ class Historia3(LiveServerTestCase):
                 pagar.click()
                 time.sleep(2)
                 try:
-                    driver.find_element(By.CLASS_NAME, 'codigo')
+                    WebDriverWait(driver, 30).until(EC.visibility_of_element_located((By.CLASS_NAME, 'codigo')))
                 except NoSuchElementException:
                     self.fail("Elemento 'código' não foi encontrado após o pagamento com pix.")
             except StaleElementReferenceException:
