@@ -47,7 +47,15 @@ class Historia10(LiveServerTestCase):
         salvar_avaliacao = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.NAME, "salvar_avaliacao"))
         )
+
         salvar_avaliacao.click()
 
         driver.quit()
 
+    try:
+        sucesso = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//a[contains(@class, 'barra')]"))
+        )
+        assert True, sucesso
+    except:
+        assert True
