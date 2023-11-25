@@ -123,9 +123,11 @@ https://docs.google.com/document/d/1Iy46XEt1GkSDpi4vgnVepXKb0E6H7CNj_UAbXbauQMM/
 
 **Lo-fi atualizado:**
 
+https://www.figma.com/file/cZh0hUIUmtqFVyaUKbsbk9/CANTINHO-CESAR?type=design&node-id=0%3A1&mode=design&t=VUFDfi9tWVm9w1E7-1
 
 **Screencast Lo-fi**
 
+https://drive.google.com/file/d/1OzT2MArgzoZU-E-5eccJTNxeYTLGyjXO/view?usp=sharing
 
 **Diagrama de atividades:**
 
@@ -153,6 +155,8 @@ https://drive.google.com/file/d/1qD6ja99LhFBssLr5VJ9H4ZrrOHk8FQx6/view?usp=shari
 
 
 **Teste Automatizado Selenium - screencast**
+
+https://drive.google.com/file/d/1AhkICD92LAxshrj02iJtyYHBU18s4fk7/view?usp=sharing
 
 
 **Atualização - programação em pares**
