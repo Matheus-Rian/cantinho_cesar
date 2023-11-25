@@ -137,6 +137,8 @@ https://drive.google.com/file/d/1SQ0MdjNiM5fpcoFjU7Zw37nUbssNIpR2/view?usp=shari
 
 **Screencast das histórias:**
 
+https://drive.google.com/file/d/1U-5YJaSB89Jh7sFUgO8A1EU2bwuX0whd/view?usp=drive_link
+
 
 **Issue/Bug tracker**
 
