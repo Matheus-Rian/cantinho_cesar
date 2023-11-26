@@ -169,4 +169,8 @@ https://docs.google.com/document/d/1Iy46XEt1GkSDpi4vgnVepXKb0E6H7CNj_UAbXbauQMM/
 
 ![image](https://github.com/mateusioliveira/cantinho_cesar/assets/98843736/04b55c8f-d116-4d18-b1dd-440b06d65089)
 
+**Slides da apresentação final**
+
+https://www.canva.com/design/DAF1Rlfcz7M/D41XLeNwMSye9Qf5ShakYw/view?utm_content=DAF1Rlfcz7M&utm_campaign=designshare&utm_medium=link&utm_source=editor
+
 
