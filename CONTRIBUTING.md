@@ -3,7 +3,7 @@
 
 Primeiramente, obrigado por dedicar seu tempo para contribuir! 
 
-Todos os tipos de contribuições são incentivados e valorizados. Consulte o [Índice](#índice) para diferentes maneiras de ajudar e detalhes sobre como este projeto lida com elas. Por favor, certifique-se de ler a seção relevante antes de fazer sua contribuição. Isso tornará tudo muito mais fácil para nós, mantenedores, e facilitará a experiência para todos os envolvidos.
+Todos os tipos de contribuições são incentivados e valorizados. Explore este documento para diferentes maneiras de ajudar e detalhes sobre como este projeto lida com elas. Por favor, certifique-se de ler a seção relevante antes de fazer sua contribuição. Isso tornará tudo muito mais fácil para nós, mantenedores, e facilitará a experiência para todos os envolvidos.
 
 > E se você gosta do projeto, mas não tem tempo para contribuir, tudo bem. Existem outras maneiras fáceis de apoiar o projeto e mostrar seu agradecimento, com as quais também ficaríamos muito felizes:
 > - Marque o projeto com uma estrela
@@ -11,21 +11,9 @@ Todos os tipos de contribuições são incentivados e valorizados. Consulte o [�
 > - Consulte este projeto no leia-me do seu projeto
 > - Mencione o projeto em encontros locais e conte aos seus amigos/colegas
 
-<!-- omit in toc -->
-## Índice
-
-- [Tenho uma pergunta](#i-have-a-question)
-- [Quero contribuir]( #eu-quero-contribuir)
-- [Reportando bugs](#reporting-bugs)
-- [Sugerindo melhorias](#suggesting-enhancements)
-- [ Melhorando a documentação](#improving-the-documentation)
-- [Styleguides](#styleguides)
-- [Mensagens de commit](#commit-messages)
-- [Junte-se à equipe do projeto](#join-the-project-team)
-
 ## Tenho uma pergunta
 
-> Se quiser fazer uma pergunta, presumimos que você leu a [Documentação] disponível(https://github.com/mateusioliveira/cantinho_cesar/blob/main/README.md).
+> Se quiser fazer uma pergunta, presumimos que você leu a Documentação.. Disponível (https://github.com/mateusioliveira/cantinho_cesar/blob/main/README.md).
 
 Antes de fazer uma pergunta, é melhor pesquisar [Issues](https://github.com/mateusioliveira/cantinho_cesar.git/issues) existentes que possam ajudá-lo. Caso você tenha encontrado um problema ou pergunta adequada e ainda precise de esclarecimentos, você pode escrever sua pergunta nesta aba. Também é aconselhável pesquisar primeiro as respostas na Internet.
 
@@ -42,7 +30,6 @@ Então cuidaremos do problema o mais rápido possível.
 
 ### Relatando Bugs
 
-<!-- omit in toc -->
 #### Antes de Enviar um Relatório de Bug
 
 Um bom relatório de bug não deve fazer com que outras pessoas precisem persegui-lo para obter mais informações. Portanto, pedimos que você investigue cuidadosamente, colete informações e descreva o problema detalhadamente em seu relatório. Conclua as etapas a seguir com antecedência para nos ajudar a corrigir qualquer possível bug o mais rápido possível.
@@ -58,7 +45,6 @@ Um bom relatório de bug não deve fazer com que outras pessoas precisem persegu
 - Possivelmente sua entrada e saída
 - Você consegue reproduzir o problema de maneira confiável? E você também pode reproduzi-lo com versões mais antigas?
 
-<!-- omit in toc -->
 #### Como faço para enviar um bom relatório de bug?
 
 > Você nunca deve relatar problemas, vulnerabilidades ou bugs relacionados à segurança, incluindo informações confidenciais, ao rastreador de problemas ou em outro lugar público. Em vez disso, bugs sensíveis devem ser enviados por e-mail para <juliafelixcordeiro2@gmail.com>.
@@ -79,7 +65,6 @@ Depois de arquivado:
 
 Esta seção orienta você no envio de sugestões de melhorias para o cantinho cesar, **incluindo recursos completamente novos e pequenas melhorias nas funcionalidades existentes**. Seguir essas diretrizes ajudará os mantenedores e a comunidade a entender sua sugestão e encontrar sugestões relacionadas.
 
-<!-- omit in toc -->
 #### Antes de enviar uma melhoria
 
 - Certifique-se de estar usando a versão mais recente.
@@ -87,7 +72,6 @@ Esta seção orienta você no envio de sugestões de melhorias para o cantinho c
 - Faça uma [pesquisa](https://github.com/mateusioliveira/cantinho_cesar.git/issues) para ver se a melhoria já foi sugerida. Em caso afirmativo, adicione um comentário ao problema existente em vez de abrir um novo.
 - Descubra se a sua ideia se enquadra no escopo e objetivos do projeto. Cabe a você apresentar argumentos fortes para convencer os desenvolvedores do projeto dos méritos desse recurso. Tenha em mente que queremos recursos que sejam úteis para a maioria dos nossos usuários e não apenas para um pequeno subconjunto. Se você tem como alvo apenas uma minoria de usuários, considere escrever uma biblioteca de complementos/plugins.
 
-<!-- omit in toc -->
 #### Como envio uma boa sugestão de melhoria?
 
 Sugestões de melhorias são rastreadas como [problemas do GitHub](https://github.com/mateusioliveira/cantinho_cesar.git/issues).
