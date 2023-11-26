@@ -88,9 +88,23 @@ Sugestões de melhorias são rastreadas como [problemas do GitHub](https://githu
 ### Como rodar o projeto
 
 Siga os passos abaixo para rodar o projeto em sua máquina:
+
+Windows:
+
 1. Clone o projeto em sua máquina
 2. No seu terminal, rode este comando para criar o ambiente virtual em sua máquina: python -m venv vmew
 3. Agora é preciso ativá-la, use o comando: .\vmew\Scripts\Activate
+4. Vamos entrar na pasta project_cantinho utilizando: cd project_cantinho
+5. Precisamos instalar algumas documentaçãoes antes de fazer o projeto rodar, utilize: pip install -r requirements.txt
+6. Agora, para garantir que o projeto vai funcionar ultize: python manage.py makemigrations
+7. Logo após o : python manage.py migrate
+8. Agora é só rodar o projeto, pra isso, utilize: python manage.py runserver
+
+Mac:
+
+1. Clone o projeto em sua máquina
+2. No seu terminal, rode este comando para criar o ambiente virtual em sua máquina: python -m venv vmew
+3. Agora é preciso ativá-la, use o comando: source venv/bin/activate
 4. Vamos entrar na pasta project_cantinho utilizando: cd project_cantinho
 5. Precisamos instalar algumas documentaçãoes antes de fazer o projeto rodar, utilize: pip install -r requirements.txt
 6. Agora, para garantir que o projeto vai funcionar ultize: python manage.py makemigrations
