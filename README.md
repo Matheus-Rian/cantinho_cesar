@@ -171,4 +171,4 @@ https://docs.google.com/document/d/1Iy46XEt1GkSDpi4vgnVepXKb0E6H7CNj_UAbXbauQMM/
 
 **Slides da apresentação final**
 
-
+https://www.canva.com/design/DAF1Rlfcz7M/D41XLeNwMSye9Qf5ShakYw/view?utm_content=DAF1Rlfcz7M&utm_campaign=designshare&utm_medium=link&utm_source=editor
