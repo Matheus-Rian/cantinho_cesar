@@ -41,7 +41,7 @@ https://cantinho-cesar.atlassian.net/jira/software/projects/CC/boards/1
 
 **Link do Web App no Azure**:
 
-https://cantinho-cesar.azurewebsites.net/
+https://cantinho-cesar2.azurewebsites.net
 
 **Relato de experiência Pair programming:**
 
@@ -87,7 +87,7 @@ https://drive.google.com/file/d/1SQ0MdjNiM5fpcoFjU7Zw37nUbssNIpR2/view?usp=shari
 
 **Deployment**
 
-https://cantinho-cesar-2.azurewebsites.net/
+https://cantinho-cesar2.azurewebsites.net
 
 **Issue/Bug tracker**
 
@@ -165,9 +165,10 @@ https://docs.google.com/document/d/1Iy46XEt1GkSDpi4vgnVepXKb0E6H7CNj_UAbXbauQMM/
 
 **Quadro no Jira**
 
-![image](https://github.com/mateusioliveira/cantinho_cesar/assets/98843736/cccd3d78-8b2e-4589-873e-11c079f9d724)
+![image](https://github.com/mateusioliveira/cantinho_cesar/assets/98843736/4cc863a3-aa31-421b-9d77-568d3c8c2c39)
 
-![image](https://github.com/mateusioliveira/cantinho_cesar/assets/98843736/04b55c8f-d116-4d18-b1dd-440b06d65089)
+![image](https://github.com/mateusioliveira/cantinho_cesar/assets/98843736/ed11e705-8aaa-4c6c-b132-c4b9b2c238c9)
+
 
 **Slides da apresentação final**
 
