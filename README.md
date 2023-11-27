@@ -151,8 +151,7 @@ https://drive.google.com/file/d/1U-5YJaSB89Jh7sFUgO8A1EU2bwuX0whd/view?usp=drive
 
 **CI/CD - screencast**
 
-https://drive.google.com/file/d/1qD6ja99LhFBssLr5VJ9H4ZrrOHk8FQx6/view?usp=sharing
-
+https://drive.google.com/file/d/10SY6O_-jssWtlUv_Wxwc1frP3Pw3CexX/view?usp=drivesdk
 
 **Teste Automatizado Selenium - screencast**
 
